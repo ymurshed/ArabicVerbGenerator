@@ -4,7 +4,7 @@ from ..Constants.GSheetValues import GSheetValues
 from oauth2client.service_account import ServiceAccountCredentials
 
 class GSheetReader:
-    def __init__(self):
+    def __init__(self, sheetId):
         try:
             self.subdirectory = "Credentials"
             self.filename = "arabicverbgenerator-ff8d2c424453.json"
@@ -14,7 +14,7 @@ class GSheetReader:
             service_account_credential_file = self.__get_full_file_path()
             creds = ServiceAccountCredentials.from_json_keyfile_name(service_account_credential_file, scope)
             client = gspread.authorize(creds)
-            self._sheet = client.open(GSheetValues.GSHEET_NAME).sheet1 
+            self._sheet = client.open(GSheetValues.GSHEET_NAME).get_worksheet(sheetId)
         
         except Exception as e:  
              print(f"An error occurred while getting sheet: {e}")

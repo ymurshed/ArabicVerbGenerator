@@ -1,6 +1,11 @@
 ﻿class GSheetValues:
     GSHEET_NAME = "Arabic Verb"
-    FEL_TAB_NAME = "ফেল"
+    BAB_SHEET_MAPPING = {
+        "نَصَرَ- يَنْصُرُ"     : 1,
+        "ضَرَبَ - يَضْرِبُ"    : 2,
+        "سَمِعَ - يَسْمَعُ"    : 3,
+        "فَتَحَ - يَفْتَحُ"    : 4
+    }
 
     PAST_FORM_3RD_PERSON_CELL_COL = 7
     PAST_FORM_2ND_PERSON_CELL_COL = 6
