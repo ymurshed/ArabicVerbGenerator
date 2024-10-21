@@ -1,6 +1,6 @@
 import gspread
 from pathlib import Path
-from ..Constants.GSheetValues import GSheetValues 
+from ..Constants.GSheetValues import GSheetValues
 from oauth2client.service_account import ServiceAccountCredentials
 
 class GSheetReader:
@@ -14,15 +14,11 @@ class GSheetReader:
             service_account_credential_file = self.__get_full_file_path()
             creds = ServiceAccountCredentials.from_json_keyfile_name(service_account_credential_file, scope)
             client = gspread.authorize(creds)
-            self.sheet = client.open(GSheetValues.GSHEET_NAME).sheet1 
+            self._sheet = client.open(GSheetValues.GSHEET_NAME).sheet1 
         
         except Exception as e:  
              print(f"An error occurred while getting sheet: {e}")
     
-    @property
-    def current_row(self):
-        return self._current_row
-
     def get_root_and_bab(self, current_row = 0):
         try:
             # Find index from where in every cycle it will start filling data
@@ -33,8 +29,8 @@ class GSheetReader:
             bab_start_cell_col = start_cell_col - 1
             self._current_row = start_cell_row # Save it for next iteration
 
-            root_value = self.sheet.cell(root_start_cell_row, root_start_cell_col).value
-            bab_value = self.sheet.cell(bab_start_cell_row, bab_start_cell_col).value
+            root_value = self._sheet.cell(root_start_cell_row, root_start_cell_col).value
+            bab_value = self._sheet.cell(bab_start_cell_row, bab_start_cell_col).value
             
             if self.__is_null_or_empty(root_value) or self.__is_null_or_empty(bab_value):
                 return
@@ -43,6 +39,14 @@ class GSheetReader:
 
         except Exception as e:  
              print(f"An error occurred while getting root and bab: {e}")
+
+    @property
+    def current_row(self):
+        return self._current_row
+
+    @property
+    def sheet(self):
+        return self._sheet
 
     def __get_full_file_path(self):
         current_directory = Path(__file__).parent
@@ -59,14 +63,14 @@ class GSheetReader:
         else:
             start_cell_row = current_row
 
-        root_value = self.sheet.cell(start_cell_row, start_cell_col).value
+        root_value = self._sheet.cell(start_cell_row, start_cell_col).value
 
         if self.__is_null_or_empty(root_value):
             return (start_cell_row, start_cell_col)
 
         while True:
             start_cell_row += 2
-            root_value = self.sheet.cell(start_cell_row, start_cell_col).value
+            root_value = self._sheet.cell(start_cell_row, start_cell_col).value
 
             if self.__is_null_or_empty(root_value):
                 break
