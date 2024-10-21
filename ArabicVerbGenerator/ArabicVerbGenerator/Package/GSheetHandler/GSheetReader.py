@@ -35,10 +35,10 @@ class GSheetReader:
             if self.__is_null_or_empty(root_value) or self.__is_null_or_empty(bab_value):
                 return
             
-            return (root_value, bab_value)
+            return (root_value.strip(), bab_value.strip())
 
         except Exception as e:  
-             print(f"An error occurred while getting root and bab: {e}")
+             print(f"An error occurred while getting root and bab from sheet: {e}")
 
     @property
     def current_row(self):

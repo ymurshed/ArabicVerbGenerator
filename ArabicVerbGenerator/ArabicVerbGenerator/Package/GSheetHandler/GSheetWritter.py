@@ -15,7 +15,7 @@ class GSheetWritter:
            self.__write_present_forms()
 
         except Exception as e:  
-             print(f"An error occurred while getting root and bab: {e}")            
+             print(f"An error occurred while writting forms in sheet: {e}")            
 
     def __write_past_forms(self):
         row = self._current_row
