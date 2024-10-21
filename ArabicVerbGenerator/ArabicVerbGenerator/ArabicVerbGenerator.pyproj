@@ -25,10 +25,14 @@
     <Compile Include="Package\Constants\Bab.py" />
     <Compile Include="Package\Constants\Diacritic.py" />
     <Compile Include="Package\Constants\GSheetValues.py" />
+    <Compile Include="Package\Constants\ForbidVerbIndicators.py" />
+    <Compile Include="Package\Constants\OrderVerbIndicators.py" />
     <Compile Include="Package\Constants\PresentVerbIndicators.py" />
     <Compile Include="Package\Constants\PastVerbIndicators.py" />
     <Compile Include="Package\GSheetHandler\GSheetWritter.py" />
     <Compile Include="Package\GSheetHandler\GSheetReader.py" />
+    <Compile Include="Package\VerbGenerator\ForbidVerbGenerator.py" />
+    <Compile Include="Package\VerbGenerator\OrderVerbGenerator.py" />
     <Compile Include="Package\VerbGenerator\PresentVerbGenerator.py" />
     <Compile Include="root.py" />
   </ItemGroup>

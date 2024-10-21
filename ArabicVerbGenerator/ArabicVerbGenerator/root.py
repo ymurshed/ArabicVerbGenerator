@@ -1,4 +1,6 @@
 ﻿import time
+from Package.VerbGenerator.ForbidVerbGenerator import ForbidVerbGenerator
+from Package.VerbGenerator.OrderVerbGenerator import OrderVerbGenerator
 from Package.VerbGenerator.PastVerbGenerator import PastVerbGenerator
 from Package.VerbGenerator.PresentVerbGenerator import PresentVerbGenerator
 from Package.GSheetHandler.GSheetReader import GSheetReader
@@ -29,10 +31,18 @@ def main():
             present_forms = present_verb_generator.get_forms(root, bab)
             print(f"Possible Present/Future Forms: {' | '.join(present_forms)}")
 
+            order_verb_generator = OrderVerbGenerator()
+            order_forms = order_verb_generator.get_forms(present_forms[2:4])
+            print(f"Possible Order Forms: {' | '.join(order_forms)}")
+
+            forbid_verb_generator = ForbidVerbGenerator()
+            forbid_forms = forbid_verb_generator.get_forms(order_forms)
+            print(f"Possible Forbid Forms: {' | '.join(forbid_forms)}")
+
             # Write forms to the sheet
             sheet = gsheet_reader.sheet
             current_row = gsheet_reader.current_row
-            gsheet_writter = GSheetWritter(sheet, current_row, past_forms, present_forms)
+            gsheet_writter = GSheetWritter(sheet, current_row, past_forms, present_forms, order_forms, forbid_forms)
             gsheet_writter.write_forms()
 
             current_row += 2
