@@ -3,7 +3,7 @@ from pathlib import Path
 from ..Constants.GSheetValues import GSheetValues 
 from oauth2client.service_account import ServiceAccountCredentials
 
-class GSheetReader:
+class GSheetWritter:
     def __init__(self):
         try:
             self.subdirectory = "Credentials"
@@ -19,26 +19,21 @@ class GSheetReader:
         except Exception as e:  
              print(f"An error occurred while getting sheet: {e}")
     
-    @property
-    def current_row(self):
-        return self._current_row
-
-    def get_root_and_bab(self, current_row = 0):
+    def get_root_and_bab(self):
         try:
             # Find index from where in every cycle it will start filling data
-            start_cell_row, start_cell_col = self.__get_starting_sheet_row(current_row)
+            start_cell_row, start_cell_col = self.__get_starting_sheet_row()
             root_start_cell_row = start_cell_row
             root_start_cell_col = start_cell_col - 2
             bab_start_cell_row = start_cell_row
             bab_start_cell_col = start_cell_col - 1
-            self._current_row = start_cell_row # Save it for next iteration
 
             root_value = self.sheet.cell(root_start_cell_row, root_start_cell_col).value
             bab_value = self.sheet.cell(bab_start_cell_row, bab_start_cell_col).value
-            
+
             if self.__is_null_or_empty(root_value) or self.__is_null_or_empty(bab_value):
                 return
-            
+
             return (root_value, bab_value)
 
         except Exception as e:  
@@ -51,13 +46,9 @@ class GSheetReader:
         file_path = file_directory / self.filename
         return file_path.resolve()
 
-    def __get_starting_sheet_row(self, current_row):
+    def __get_starting_sheet_row(self):
+        start_cell_row = GSheetValues.PAST_FORM_1ST_PERSON_CELL_ROW
         start_cell_col = GSheetValues.PAST_FORM_1ST_PERSON_CELL_COL
-
-        if current_row == 0:
-            start_cell_row = GSheetValues.PAST_FORM_1ST_PERSON_CELL_ROW
-        else:
-            start_cell_row = current_row
 
         root_value = self.sheet.cell(start_cell_row, start_cell_col).value
 

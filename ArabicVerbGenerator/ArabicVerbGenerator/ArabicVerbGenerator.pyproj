@@ -27,6 +27,7 @@
     <Compile Include="Package\Constants\GSheetValues.py" />
     <Compile Include="Package\Constants\PresentVerbIndicators.py" />
     <Compile Include="Package\Constants\PastVerbIndicators.py" />
+    <Compile Include="Package\GSheetHandler\GSheetWritter.py" />
     <Compile Include="Package\GSheetHandler\GSheetReader.py" />
     <Compile Include="Package\VerbGenerator\PresentVerbGenerator.py" />
     <Compile Include="root.py" />
