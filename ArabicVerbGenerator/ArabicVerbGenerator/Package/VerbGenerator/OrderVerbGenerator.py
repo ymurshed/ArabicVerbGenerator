@@ -27,7 +27,7 @@ class OrderVerbGenerator:
                 conjugations.append(f"{conjugated}")
         
         except Exception as e:  
-             print(f"An error occurred in PastVerbGenerator: {e}")
+             print(f"An error occurred in OrderVerbGenerator: {e}")
 
         return conjugations
 
