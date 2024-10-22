@@ -22,9 +22,9 @@ def main():
             
             while True:
                 # Get root and bab from the sheet
-                root, bab = gsheet_reader.get_root_and_bab(current_row)
+                root, bab, masder = gsheet_reader.get_root_bab_masder(current_row)
 
-                if root is None or bab is None:
+                if root is None or bab is None or masder is None:
                     break
 
                 # Generate verb forms 

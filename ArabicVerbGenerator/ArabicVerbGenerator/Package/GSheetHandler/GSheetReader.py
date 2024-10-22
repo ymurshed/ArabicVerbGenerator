@@ -19,26 +19,26 @@ class GSheetReader:
         except Exception as e:  
              print(f"An error occurred while getting sheet: {e}")
     
-    def get_root_and_bab(self, current_row = 0):
+    def get_root_bab_masder(self, current_row = 0):
         try:
             # Find index from where in every cycle it will start filling data
             start_cell_row, start_cell_col = self.__get_starting_sheet_row(current_row)
-            root_start_cell_row = start_cell_row
+            masder_start_cell_col = start_cell_col - 3
             root_start_cell_col = start_cell_col - 2
-            bab_start_cell_row = start_cell_row
             bab_start_cell_col = start_cell_col - 1
             self._current_row = start_cell_row # Save it for next iteration
 
-            root_value = self._sheet.cell(root_start_cell_row, root_start_cell_col).value
-            bab_value = self._sheet.cell(bab_start_cell_row, bab_start_cell_col).value
+            masder_value = self._sheet.cell(start_cell_row, masder_start_cell_col).value
+            root_value = self._sheet.cell(start_cell_row, root_start_cell_col).value
+            bab_value = self._sheet.cell(start_cell_row, bab_start_cell_col).value
             
-            if self.__is_null_or_empty(root_value) or self.__is_null_or_empty(bab_value):
+            if self.__is_null_or_empty(masder_value) or self.__is_null_or_empty(root_value) or self.__is_null_or_empty(bab_value):
                 return
             
-            return (root_value.strip(), bab_value.strip())
+            return (root_value.strip(), bab_value.strip(), masder_value.strip())
 
         except Exception as e:  
-             print(f"An error occurred while getting root and bab from sheet: {e}")
+             print(f"An error occurred while getting masder, root and bab from sheet: {e}")
 
     @property
     def current_row(self):

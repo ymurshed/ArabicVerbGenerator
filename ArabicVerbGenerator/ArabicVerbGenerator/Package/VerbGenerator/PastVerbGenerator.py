@@ -3,9 +3,9 @@ from ..Constants.Diacritic import Diacritic
 from ..Constants.PastVerbIndicators import PastVerbIndicators
 
 class PastVerbGenerator:
-    def get_forms(self, root, bab_name):
+    def get_forms(self, root, bab, masder):
         try:
-            root = self.__set_past_verb_aen_kalima(root, bab_name)
+            root = self.__set_past_verb_aen_kalima(root, bab)
 
             # Remove the last diacritic char if present
             if root[-1] in (Diacritic.KASRA + Diacritic.FATHA + Diacritic.DAMMA):
@@ -28,10 +28,10 @@ class PastVerbGenerator:
 
         return conjugations
 
-    def __set_past_verb_aen_kalima(self, root, bab_name):
+    def __set_past_verb_aen_kalima(self, root, bab):
         # 3 character root 
         if len(root) == 6: 
-            match bab_name:
+            match bab:
                 case Bab.FATAHA_YAFTAHU:
                    root = root[0:3] + Diacritic.FATHA + root[4:6]
 
