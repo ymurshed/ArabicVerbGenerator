@@ -25,7 +25,7 @@ class PresentVerbGenerator:
                 else:
                     conjugated = f"{prefixes[i]}{root}{suffixes[i]}"
             
-                conjugations.append(f"{conjugated}")
+                conjugations.append(conjugated)
 
         except Exception as e:  
              print(f"An error occurred in PresentVerbGenerator: {e}")

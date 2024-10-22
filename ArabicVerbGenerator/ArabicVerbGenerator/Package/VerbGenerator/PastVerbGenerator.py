@@ -21,7 +21,7 @@ class PastVerbGenerator:
                 else:
                     conjugated = f"{root}{Diacritic.SUKUN}{suffixes[i]}"
             
-                conjugations.append(f"{conjugated}")
+                conjugations.append(conjugated)
         
         except Exception as e:  
              print(f"An error occurred in PastVerbGenerator: {e}")

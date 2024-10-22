@@ -10,7 +10,7 @@ class ForbidVerbGenerator:
                 root = order_forms[i].strip()
             
                 conjugated = f"{ForbidVerbIndicators.prefixes[0]}{root[2:]}"
-                conjugations.append(f"{conjugated}")
+                conjugations.append(conjugated)
         
         except Exception as e:  
              print(f"An error occurred in ForbidVerbGenerator: {e}")

@@ -1,4 +1,5 @@
 ﻿from ..Constants.Diacritic import Diacritic
+from ..Constants.Exceptions import Exceptions
 from ..Constants.OrderVerbIndicators import OrderVerbIndicators
 
 class OrderVerbGenerator:
@@ -24,7 +25,7 @@ class OrderVerbGenerator:
                 root = root[2:]
                 
                 conjugated = f"{self.__get_first_haref_by_aen_kalima(root)}{root[:-1]}{Diacritic.SUKUN}"
-                conjugations.append(f"{conjugated}")
+                conjugations.append(self.__apply_exceptional_rule(conjugated))
         
         except Exception as e:  
              print(f"An error occurred in OrderVerbGenerator: {e}")
@@ -37,3 +38,8 @@ class OrderVerbGenerator:
         else:
             return OrderVerbIndicators.prefixes[1] 
     
+    def __apply_exceptional_rule(self, conjugated):
+        for key, value in Exceptions.REMOVE_HAREF_MAPPING.items():
+            if key == conjugated:
+                conjugated = conjugated.replace(value, "")
+        return conjugated

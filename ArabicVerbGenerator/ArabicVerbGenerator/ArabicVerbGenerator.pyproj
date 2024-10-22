@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Include="Package\Constants\Bab.py" />
     <Compile Include="Package\Constants\Diacritic.py" />
+    <Compile Include="Package\Constants\Exceptions.py" />
     <Compile Include="Package\Constants\GSheetValues.py" />
     <Compile Include="Package\Constants\ForbidVerbIndicators.py" />
     <Compile Include="Package\Constants\OrderVerbIndicators.py" />
