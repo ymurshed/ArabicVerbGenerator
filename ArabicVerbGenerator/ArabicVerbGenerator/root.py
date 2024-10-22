@@ -29,12 +29,12 @@ def main():
 
                 # Generate verb forms 
                 past_verb_generator = PastVerbGenerator()
-                past_forms = past_verb_generator.get_forms(root, bab)
+                past_forms = past_verb_generator.get_forms(root, bab, masder)
                 past_forms.insert(0, root)
                 print(f"Possible Past Forms: {' | '.join(past_forms)}")
 
                 present_verb_generator = PresentVerbGenerator()
-                present_forms = present_verb_generator.get_forms(root, bab)
+                present_forms = present_verb_generator.get_forms(root, bab, masder)
                 print(f"Possible Present/Future Forms: {' | '.join(present_forms)}")
 
                 order_verb_generator = OrderVerbGenerator()
