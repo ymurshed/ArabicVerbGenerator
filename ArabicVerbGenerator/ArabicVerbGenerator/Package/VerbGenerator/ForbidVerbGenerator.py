@@ -1,8 +1,13 @@
 ﻿from ..Constants.Diacritic import Diacritic
+from ..Constants.GSheetValues import GSheetValues
 from ..Constants.ForbidVerbIndicators import ForbidVerbIndicators
 
 class ForbidVerbGenerator:
-    def get_forms(self, order_forms):
+    def get_forms(self, order_forms, masder):
+        if masder == GSheetValues.SAHEE_MASDER:
+            return self.__get_sahee_forms(order_forms)
+
+    def __get_sahee_forms(self, order_forms):
         try:
             # Generate conjugations
             conjugations = []

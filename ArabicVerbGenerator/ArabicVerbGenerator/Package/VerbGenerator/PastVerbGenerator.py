@@ -1,9 +1,14 @@
 ﻿from ..Constants.Bab import Bab
 from ..Constants.Diacritic import Diacritic
+from ..Constants.GSheetValues import GSheetValues
 from ..Constants.PastVerbIndicators import PastVerbIndicators
 
 class PastVerbGenerator:
     def get_forms(self, root, bab, masder):
+        if masder == GSheetValues.SAHEE_MASDER:
+            return self.__get_sahee_forms(root, bab)
+
+    def __get_sahee_forms(self, root, bab):
         try:
             root = self.__set_past_verb_aen_kalima(root, bab)
 

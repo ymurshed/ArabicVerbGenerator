@@ -1,9 +1,28 @@
 ﻿from ..Constants.Diacritic import Diacritic
+from ..Constants.GSheetValues import GSheetValues
 from ..Constants.Exceptions import Exceptions
 from ..Constants.OrderVerbIndicators import OrderVerbIndicators
 
 class OrderVerbGenerator:
-    def get_forms(self, present_forms):
+    def get_forms(self, present_forms, masder):
+        if masder == GSheetValues.SAHEE_MASDER:
+            return self.__get_sahee_forms(present_forms)
+    
+    def apply_exceptional_rule(self, conjugations):
+        updated_conjugations = []
+
+        for conjugated in conjugations:
+            is_updated = False
+            for key, value in Exceptions.REMOVE_HAREF_MAPPING.items():
+                if key == conjugated:
+                    is_updated = True
+                    updated_conjugations.append(conjugated.replace(value, ""))
+            if is_updated == False:
+                updated_conjugations.append(conjugated)
+
+        return updated_conjugations
+
+    def __get_sahee_forms(self, present_forms):
         try:
             # Generate conjugations
             conjugations = []
@@ -25,7 +44,7 @@ class OrderVerbGenerator:
                 root = root[2:]
                 
                 conjugated = f"{self.__get_first_haref_by_aen_kalima(root)}{root[:-1]}{Diacritic.SUKUN}"
-                conjugations.append(self.__apply_exceptional_rule(conjugated))
+                conjugations.append(conjugated)
         
         except Exception as e:  
              print(f"An error occurred in OrderVerbGenerator: {e}")
@@ -38,8 +57,4 @@ class OrderVerbGenerator:
         else:
             return OrderVerbIndicators.prefixes[1] 
     
-    def __apply_exceptional_rule(self, conjugated):
-        for key, value in Exceptions.REMOVE_HAREF_MAPPING.items():
-            if key == conjugated:
-                conjugated = conjugated.replace(value, "")
-        return conjugated
+    

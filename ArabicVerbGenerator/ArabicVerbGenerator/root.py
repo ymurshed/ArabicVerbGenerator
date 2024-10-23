@@ -38,12 +38,15 @@ def main():
                 print(f"Possible Present/Future Forms: {' | '.join(present_forms)}")
 
                 order_verb_generator = OrderVerbGenerator()
-                order_forms = order_verb_generator.get_forms(present_forms[2:4])
-                print(f"Possible Order Forms: {' | '.join(order_forms)}")
-
+                order_forms = order_verb_generator.get_forms(present_forms[2:4], masder)
+                
                 forbid_verb_generator = ForbidVerbGenerator()
-                forbid_forms = forbid_verb_generator.get_forms(order_forms)
+                forbid_forms = forbid_verb_generator.get_forms(order_forms, masder)
                 print(f"Possible Forbid Forms: {' | '.join(forbid_forms)}")
+
+                # Apply exceptional rule for order forms
+                order_forms = order_verb_generator.apply_exceptional_rule(order_forms)
+                print(f"Possible Order Forms: {' | '.join(order_forms)}")
 
                 # Write forms to the sheet
                 sheet = gsheet_reader.sheet

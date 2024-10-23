@@ -7,6 +7,9 @@
         "فَتَحَ - يَفْتَحُ"    : 4
     }
 
+    SAHEE_MASDER        = "صحيح"
+    GAIRE_SAHEE_MASDER  = "غير صحيح"
+
     PAST_FORM_3RD_PERSON_CELL_COL = 8
     PAST_FORM_2ND_PERSON_CELL_COL = 7
     PAST_FORM_1ST_PERSON_CELL_COL = 6
