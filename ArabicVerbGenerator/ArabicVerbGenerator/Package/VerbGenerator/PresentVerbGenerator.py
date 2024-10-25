@@ -38,12 +38,8 @@ class PresentVerbGenerator:
         return conjugations
 
     def __set_present_verb_aen_kalima(self, root, bab):
-        # 3 character root 
         if len(root) == 6: 
             match bab:
-                case Bab.FATAHA_YAFTAHU:
-                   root = root[0:3] + Diacritic.FATHA + root[4:6]
-
                 case Bab.NASARA_YANSURU:
                     root = root[0:3] + Diacritic.DAMMA + root[4:6]
 
@@ -52,4 +48,7 @@ class PresentVerbGenerator:
 
                 case Bab.SAMIA_YASMAU:
                     root = root[0:3] + Diacritic.FATHA + root[4:6]
+
+                case Bab.FATAHA_YAFTAHU:
+                   root = root[0:3] + Diacritic.FATHA + root[4:6]
         return root
