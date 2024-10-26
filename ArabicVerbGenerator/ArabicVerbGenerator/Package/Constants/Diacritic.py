@@ -1,10 +1,12 @@
 ﻿class Diacritic:
-    KASRA               = "ِ"
-    FATHA               = "َ"
-    DAMMA               = "ُ"
-    SUKUN               = "ْ"
-    WA_HARFE_ATT        = "وْ"
-    YA1_HARFE_ATT       = "يْ"
-    YA2_HARFE_ATT       = "ىْ"
-    NA                  = "نَ"
-
+    KASRA                   = "ِ"
+    FATHA                   = "َ"
+    DAMMA                   = "ُ"
+    SUKUN                   = "ْ"
+    WA_HARFE_ATT            = "وْ"
+    YA_HARFE_ATT_1          = "يْ"
+    YA_HARFE_ATT_2          = "ىْ"
+    YA                      = "يَ"
+    NA                      = "نَ"
+    ALIF                    = "ا"
+    
