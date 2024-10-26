@@ -15,10 +15,12 @@ class OrderVerbGenerator:
 
         for conjugated in conjugations:
             is_updated = False
+            
             for key, value in Exceptions.REMOVE_HAREF_MAPPING.items():
                 if key == conjugated:
                     is_updated = True
                     updated_conjugations.append(conjugated.replace(value, ""))
+            
             if is_updated == False:
                 updated_conjugations.append(conjugated)
 
@@ -70,9 +72,11 @@ class OrderVerbGenerator:
                 # Remove the first present verb haref
                 root = root[2:]
                 
-                conjugated = ""
                 if i == 0:
-                    conjugated = f"{root[0:2]}{root[:-2]}{Diacritic.SUKUN}"
+                    conjugated = f"{root[0:2]}{root[-2]}{Diacritic.SUKUN}"
+                else:
+                    conjugated = root[:-1]
+
                 conjugations.append(conjugated)
         
         except Exception as e:  

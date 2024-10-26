@@ -1,2 +1,2 @@
 ﻿class ForbidVerbIndicators:
-    prefixes = ["لاتَ"]
+    prefixes = ["لا تَ"]
