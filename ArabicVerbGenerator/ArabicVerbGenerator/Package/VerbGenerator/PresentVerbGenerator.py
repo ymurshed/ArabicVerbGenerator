@@ -51,7 +51,11 @@ class PresentVerbGenerator:
             suffixes = PresentVerbIndicators.suffixes 
 
             for i in range(len(suffixes)):
-                conjugated = f"{prefixes[i]}{self.__set_ghair_sahee_present_verb_aen_kalima(root, bab)}{suffixes[i]}"
+                root = self.__set_ghair_sahee_present_verb_aen_kalima(root, bab)
+                if suffixes[i] == PresentVerbIndicators.suffixes[3]: 
+                    root = f"{root}{Diacritic.KASRA}"
+
+                conjugated = f"{prefixes[i]}{root}{suffixes[i]}"
                 conjugations.append(conjugated)
 
         except Exception as e:  
