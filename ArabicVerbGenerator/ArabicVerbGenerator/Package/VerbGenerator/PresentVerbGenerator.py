@@ -45,17 +45,20 @@ class PresentVerbGenerator:
             if root[-1] in (Diacritic.KASRA + Diacritic.FATHA + Diacritic.DAMMA):
                 root = root[:-1]
     
+            root = self.__set_ghair_sahee_present_verb_aen_kalima(root, bab)
+
             # Generate conjugations
             conjugations = []
             prefixes = PresentVerbIndicators.prefixes
             suffixes = PresentVerbIndicators.suffixes 
 
             for i in range(len(suffixes)):
-                root = self.__set_ghair_sahee_present_verb_aen_kalima(root, bab)
-                if suffixes[i] == PresentVerbIndicators.suffixes[3]: 
-                    root = f"{root}{Diacritic.KASRA}"
-
-                conjugated = f"{prefixes[i]}{root}{suffixes[i]}"
+                #root = self.__set_ghair_sahee_present_verb_aen_kalima(root, bab)
+                if i == 3: 
+                    conjugated = f"{prefixes[i]}{root}{Diacritic.KASRA}{suffixes[i]}"
+                else:
+                    conjugated = f"{prefixes[i]}{root}{suffixes[i]}"
+                
                 conjugations.append(conjugated)
 
         except Exception as e:  
