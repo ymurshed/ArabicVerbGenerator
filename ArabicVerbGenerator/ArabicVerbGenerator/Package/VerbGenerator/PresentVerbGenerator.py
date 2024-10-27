@@ -14,8 +14,15 @@ class PresentVerbGenerator:
         try:
             root = self.__set_present_verb_aen_kalima(root, bab)
 
-            # Replace the first diacritic char with SUKUN
-            root = root[0] + Diacritic.SUKUN + root[2:]
+            # Replace the first diacritic char  
+            if bab == Bab.BABUL_IFAL:
+                 # Replace the first diacritic char with blank
+                root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
+                prefixes = PresentVerbIndicators.prefixes_ifal
+            else:
+                # Replace the first diacritic char with SUKUN
+                root = root[0] + Diacritic.SUKUN + root[2:]
+                prefixes = PresentVerbIndicators.prefixes
 
             # Remove the last diacritic char if present
             if root[-1] in (Diacritic.KASRA + Diacritic.FATHA + Diacritic.DAMMA):
@@ -23,7 +30,6 @@ class PresentVerbGenerator:
     
             # Generate conjugations
             conjugations = []
-            prefixes = PresentVerbIndicators.prefixes
             suffixes = PresentVerbIndicators.suffixes 
 
             for i in range(len(suffixes)):
@@ -80,6 +86,12 @@ class PresentVerbGenerator:
 
                 case Bab.FATAHA_YAFTAHU:
                    root = root[0:3] + Diacritic.FATHA + root[4:6]
+
+        if len(root) == 8:
+            match bab:
+                case Bab.BABUL_IFAL:
+                   root = root[0:5] + Diacritic.KASRA + root[6:8]
+
         return root
 
     def __set_ghair_sahee_present_verb_aen_kalima(self, root, bab):
