@@ -63,10 +63,13 @@ class OrderVerbGenerator:
                 # Remove the first present verb haref
                 root = root[2:]
                 
+                # Set the first present verb haref 
+                first_haref = Diacritic.ALIF_HAMJA_FATHA if bab == Bab.BABUL_IFAL else ""
+
                 if i == 0:
-                    conjugated = f"{root[0:2]}{root[-2]}{Diacritic.SUKUN}"
+                    conjugated = f"{first_haref}{root[0:2]}{root[-2]}{Diacritic.SUKUN}"
                 else:
-                    conjugated = root
+                    conjugated = f"{first_haref}{root}"
 
                 conjugations.append(conjugated)
         

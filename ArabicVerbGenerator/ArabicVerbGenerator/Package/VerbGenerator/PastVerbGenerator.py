@@ -59,7 +59,6 @@ class PastVerbGenerator:
 
         return conjugations
 
-
     def __set_past_verb_aen_kalima(self, root, bab):
         if len(root) == 6: 
             match bab:
@@ -87,4 +86,10 @@ class PastVerbGenerator:
 
                 case Bab.SAMIA_YASMAU:
                      root = root[0] + Diacritic.KASRA + root[3]
+
+        if len(root) == 6:
+            match bab:
+                case Bab.BABUL_IFAL:
+                   root = root[0:4] + root[5]
+
         return root

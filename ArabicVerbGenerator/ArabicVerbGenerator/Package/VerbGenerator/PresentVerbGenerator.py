@@ -55,11 +55,10 @@ class PresentVerbGenerator:
 
             # Generate conjugations
             conjugations = []
-            prefixes = PresentVerbIndicators.prefixes
+            prefixes = PresentVerbIndicators.prefixes_ifal if bab == Bab.BABUL_IFAL else PresentVerbIndicators.prefixes
             suffixes = PresentVerbIndicators.suffixes 
 
             for i in range(len(suffixes)):
-                #root = self.__set_ghair_sahee_present_verb_aen_kalima(root, bab)
                 if i == 3: 
                     conjugated = f"{prefixes[i]}{root}{Diacritic.KASRA}{suffixes[i]}"
                 else:
@@ -105,4 +104,10 @@ class PresentVerbGenerator:
 
                 case Bab.SAMIA_YASMAU:
                      root = root[0] + Diacritic.FATHA + Diacritic.ALIF + root[3]
+
+        if len(root) == 6:
+            match bab:
+                case Bab.BABUL_IFAL:
+                   root = root[2] + Diacritic.KASRA + Diacritic.YA_HARFE_ATT_1 + root[5]
+
         return root

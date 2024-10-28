@@ -30,7 +30,7 @@ class RuleManager:
             
             if conjugated.endswith(Diacritic.YA_HARFE_ATT_1):
                 is_updated = True
-                updated_conjugations.append(conjugated.replace(Diacritic.YA_HARFE_ATT_1, Diacritic.YA))
+                updated_conjugations.append(conjugated[:-1])
             
             if is_updated == False:
                 updated_conjugations.append(conjugated)

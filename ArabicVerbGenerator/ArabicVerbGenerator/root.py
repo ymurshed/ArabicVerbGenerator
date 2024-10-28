@@ -15,7 +15,7 @@ def main():
     # Iterate each bab sheet
     for key, value in GSheetValues.BAB_SHEET_MAPPING.items():
         try:
-            if key == "بَابُ الإفْعَالِ":
+            if key != "بَابُ الإفْعَالِ":
                  continue
             
             print(f"Start processing {key} bab ---> ")

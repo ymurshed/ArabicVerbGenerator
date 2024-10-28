@@ -18,6 +18,7 @@ class ForbidVerbGenerator:
             
             for i in range(len(order_forms)):
                 root = order_forms[i].strip()
+                
                 conjugated = f"{prefix}{root[2:]}"
                 conjugations.append(conjugated)
         
@@ -30,9 +31,17 @@ class ForbidVerbGenerator:
         try:
             # Generate conjugations
             conjugations = []
+            
             for i in range(len(order_forms)):
                 root = order_forms[i].strip()
-                conjugated = f"{ForbidVerbIndicators.prefixes[0]}{root}"
+                
+                if bab == Bab.BABUL_IFAL:
+                    root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
+                    prefixes = ForbidVerbIndicators.prefixes_ifal
+                else:
+                    prefixes = ForbidVerbIndicators.prefixes
+                
+                conjugated = f"{prefixes[0]}{root}"
                 conjugations.append(conjugated)
         
         except Exception as e:  
