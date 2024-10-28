@@ -1,14 +1,15 @@
-﻿from ..Constants.Diacritic import Diacritic
+﻿from Package.Constants.Bab import Bab
+from ..Constants.Diacritic import Diacritic
 from ..Constants.GSheetValues import GSheetValues
 from ..Constants.Exceptions import Exceptions
 from ..Constants.OrderVerbIndicators import OrderVerbIndicators
 
 class OrderVerbGenerator:
-    def get_forms(self, present_forms, masder):
+    def get_forms(self, present_forms, bab, masder):
         if masder == GSheetValues.SAHEE_MASDER:
-            return self.__get_sahee_forms(present_forms)
+            return self.__get_sahee_forms(present_forms, bab)
         else:
-            return self.__get_ghair_sahee_forms(present_forms)
+            return self.__get_ghair_sahee_forms(present_forms, bab)
 
     def apply_exceptional_rule(self, conjugations):
         updated_conjugations = []
@@ -26,7 +27,7 @@ class OrderVerbGenerator:
 
         return updated_conjugations
 
-    def __get_sahee_forms(self, present_forms):
+    def __get_sahee_forms(self, present_forms, bab):
         try:
             # Generate conjugations
             conjugations = []
@@ -47,7 +48,13 @@ class OrderVerbGenerator:
                 # Remove the first present verb haref
                 root = root[2:]
                 
-                conjugated = f"{self.__get_first_haref_by_aen_kalima(root)}{root[:-1]}{Diacritic.SUKUN}"
+                # Set the first present verb haref 
+                if bab == Bab.BABUL_IFAL:
+                    first_haref = Diacritic.ALIF_HAMJA_FATHA
+                else:
+                    first_haref = self.__get_first_haref_by_aen_kalima(root) 
+
+                conjugated = f"{first_haref}{root[:-1]}{Diacritic.SUKUN}"
                 conjugations.append(conjugated)
         
         except Exception as e:  
@@ -55,7 +62,7 @@ class OrderVerbGenerator:
 
         return conjugations
 
-    def __get_ghair_sahee_forms(self, present_forms):
+    def __get_ghair_sahee_forms(self, present_forms, bab):
         try:
             # Generate conjugations
             conjugations = []

@@ -14,6 +14,9 @@ def main():
     # Iterate each bab sheet
     for key, value in GSheetValues.BAB_SHEET_MAPPING.items():
         try:
+            if key != "بَابُ الإفْعَالِ":
+                continue
+
             print(f"Start processing {key} bab ---> ")
 
             current_row = 0
@@ -38,10 +41,10 @@ def main():
                 print(f"Possible Present/Future Forms: {' | '.join(present_forms)}")
 
                 order_verb_generator = OrderVerbGenerator()
-                order_forms = order_verb_generator.get_forms(present_forms[2:4], masder)
+                order_forms = order_verb_generator.get_forms(present_forms[2:4], bab, masder)
                 
                 forbid_verb_generator = ForbidVerbGenerator()
-                forbid_forms = forbid_verb_generator.get_forms(order_forms, masder)
+                forbid_forms = forbid_verb_generator.get_forms(order_forms, bab, masder)
                 print(f"Possible Forbid Forms: {' | '.join(forbid_forms)}")
 
                 # Apply exceptional rule for order forms
