@@ -26,7 +26,7 @@ class ForbidVerbGenerator:
 
         return conjugations
 
-    def __get_ghair_sahee_forms(self, order_forms):
+    def __get_ghair_sahee_forms(self, order_forms, bab):
         try:
             # Generate conjugations
             conjugations = []
