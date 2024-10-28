@@ -28,6 +28,7 @@
     <Compile Include="Package\Constants\GSheetValues.py" />
     <Compile Include="Package\Constants\ForbidVerbIndicators.py" />
     <Compile Include="Package\Constants\OrderVerbIndicators.py" />
+    <Compile Include="Package\Constants\NegativeFutureVerbIndicators.py" />
     <Compile Include="Package\Constants\PresentVerbIndicators.py" />
     <Compile Include="Package\Constants\PastVerbIndicators.py" />
     <Compile Include="Package\GSheetHandler\GSheetWritter.py" />
@@ -35,6 +36,7 @@
     <Compile Include="Package\Helpers\RuleManager.py" />
     <Compile Include="Package\VerbGenerator\ForbidVerbGenerator.py" />
     <Compile Include="Package\VerbGenerator\OrderVerbGenerator.py" />
+    <Compile Include="Package\VerbGenerator\NegativeFutureVerbGenerator.py" />
     <Compile Include="Package\VerbGenerator\PresentVerbGenerator.py" />
     <Compile Include="root.py" />
   </ItemGroup>

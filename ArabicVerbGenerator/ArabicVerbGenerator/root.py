@@ -5,6 +5,7 @@ from Package.VerbGenerator.ForbidVerbGenerator import ForbidVerbGenerator
 from Package.VerbGenerator.OrderVerbGenerator import OrderVerbGenerator
 from Package.VerbGenerator.PastVerbGenerator import PastVerbGenerator
 from Package.VerbGenerator.PresentVerbGenerator import PresentVerbGenerator
+from Package.VerbGenerator.NegativeFutureVerbGenerator import NegativeFutureVerbGenerator
 from Package.GSheetHandler.GSheetReader import GSheetReader
 from Package.GSheetHandler.GSheetWritter import GSheetWritter
 
@@ -41,6 +42,9 @@ def main():
                 
                 forbid_verb_generator = ForbidVerbGenerator()
                 forbid_forms = forbid_verb_generator.get_forms(order_forms, bab, masder)
+
+                negative_future_verb_generator = NegativeFutureVerbGenerator()
+                negative_future_forms = negative_future_verb_generator.get_forms(present_forms)
                 
                 # Apply rules
                 rule_manager = RuleManager(past_forms)
@@ -55,11 +59,12 @@ def main():
                 print(f"Present/Future Forms: {' | '.join(present_forms)}")
                 print(f"Order Forms: {' | '.join(order_forms)}")
                 print(f"Forbid Forms: {' | '.join(forbid_forms)}")
+                print(f"Negative Future Forms: {' | '.join(negative_future_forms)}")
 
                 # Write forms to the sheet
                 sheet = gsheet_reader.sheet
                 current_row = gsheet_reader.current_row
-                gsheet_writter = GSheetWritter(sheet, current_row, past_forms, present_forms, order_forms, forbid_forms)
+                gsheet_writter = GSheetWritter(sheet, current_row, past_forms, present_forms, order_forms, forbid_forms, negative_future_forms)
                 gsheet_writter.write_forms()
 
                 current_row += 2

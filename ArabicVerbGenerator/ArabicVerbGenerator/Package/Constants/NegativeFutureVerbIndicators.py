@@ -1,0 +1,2 @@
+﻿class NegativeFutureVerbIndicators:
+    prefixes = ["لَنْ"]

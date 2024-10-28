@@ -1,7 +1,6 @@
 ﻿from Package.Constants.Bab import Bab
 from ..Constants.Diacritic import Diacritic
 from ..Constants.GSheetValues import GSheetValues
-from ..Constants.Exceptions import Exceptions
 from ..Constants.OrderVerbIndicators import OrderVerbIndicators
 
 class OrderVerbGenerator:
