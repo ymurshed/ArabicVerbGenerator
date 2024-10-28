@@ -32,7 +32,6 @@ class ForbidVerbGenerator:
             conjugations = []
             for i in range(len(order_forms)):
                 root = order_forms[i].strip()
-            
                 conjugated = f"{ForbidVerbIndicators.prefixes[0]}{root}"
                 conjugations.append(conjugated)
         

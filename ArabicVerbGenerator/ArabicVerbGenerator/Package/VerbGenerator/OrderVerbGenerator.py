@@ -11,22 +11,6 @@ class OrderVerbGenerator:
         else:
             return self.__get_ghair_sahee_forms(present_forms, bab)
 
-    def apply_exceptional_rule(self, conjugations):
-        updated_conjugations = []
-
-        for conjugated in conjugations:
-            is_updated = False
-            
-            for key, value in Exceptions.REMOVE_HAREF_MAPPING.items():
-                if key == conjugated:
-                    is_updated = True
-                    updated_conjugations.append(conjugated.replace(value, ""))
-            
-            if is_updated == False:
-                updated_conjugations.append(conjugated)
-
-        return updated_conjugations
-
     def __get_sahee_forms(self, present_forms, bab):
         try:
             # Generate conjugations
@@ -82,7 +66,7 @@ class OrderVerbGenerator:
                 if i == 0:
                     conjugated = f"{root[0:2]}{root[-2]}{Diacritic.SUKUN}"
                 else:
-                    conjugated = root[:-1]
+                    conjugated = root
 
                 conjugations.append(conjugated)
         

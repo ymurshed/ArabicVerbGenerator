@@ -1,5 +1,6 @@
 ﻿import time
 from Package.Constants.GSheetValues import GSheetValues
+from Package.Helpers.RuleManager import RuleManager
 from Package.VerbGenerator.ForbidVerbGenerator import ForbidVerbGenerator
 from Package.VerbGenerator.OrderVerbGenerator import OrderVerbGenerator
 from Package.VerbGenerator.PastVerbGenerator import PastVerbGenerator
@@ -34,22 +35,29 @@ def main():
                 past_verb_generator = PastVerbGenerator()
                 past_forms = past_verb_generator.get_forms(root, bab, masder)
                 past_forms.insert(0, root)
-                print(f"Possible Past Forms: {' | '.join(past_forms)}")
-
+                
                 present_verb_generator = PresentVerbGenerator()
                 present_forms = present_verb_generator.get_forms(root, bab, masder)
-                print(f"Possible Present/Future Forms: {' | '.join(present_forms)}")
-
+                
                 order_verb_generator = OrderVerbGenerator()
                 order_forms = order_verb_generator.get_forms(present_forms[2:4], bab, masder)
                 
                 forbid_verb_generator = ForbidVerbGenerator()
                 forbid_forms = forbid_verb_generator.get_forms(order_forms, bab, masder)
                 
-                # Apply exceptional rule for order forms
-                order_forms = order_verb_generator.apply_exceptional_rule(order_forms)
-                print(f"Possible Order Forms: {' | '.join(order_forms)}")
-                print(f"Possible Forbid Forms: {' | '.join(forbid_forms)}")
+                # Apply rules
+                rule_manager = RuleManager(past_forms)
+                past_forms = rule_manager.conjugations
+                rule_manager = RuleManager(present_forms)
+                present_forms = rule_manager.conjugations
+                rule_manager = RuleManager(order_forms)
+                order_forms = rule_manager.conjugations
+                rule_manager = RuleManager(forbid_forms)
+                forbid_forms = rule_manager.conjugations
+                print(f"Past Forms: {' | '.join(past_forms)}")
+                print(f"Present/Future Forms: {' | '.join(present_forms)}")
+                print(f"Order Forms: {' | '.join(order_forms)}")
+                print(f"Forbid Forms: {' | '.join(forbid_forms)}")
 
                 # Write forms to the sheet
                 sheet = gsheet_reader.sheet

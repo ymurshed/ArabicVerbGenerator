@@ -6,7 +6,7 @@
     WA_HARFE_ATT            = "وْ"
     YA_HARFE_ATT_1          = "يْ"
     YA_HARFE_ATT_2          = "ىْ"
-    YA                      = "يَ"
+    YA                      = "ي"
     NA                      = "نَ"
     ALIF                    = "ا"
     ALIF_HAMJA_FATHA        = "أَ"
