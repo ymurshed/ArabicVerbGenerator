@@ -1,0 +1,2 @@
+﻿class ForPresentVerbIndicators:
+    prefixes = ["لِ"]
