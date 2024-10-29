@@ -1,13 +1,14 @@
 ﻿import time
-from Package.Constants.GSheetValues import GSheetValues
 from Package.Helpers.RuleManager import RuleManager
+from Package.Constants.GSheetValues import GSheetValues
+from Package.GSheetHandler.GSheetReader import GSheetReader
+from Package.GSheetHandler.GSheetWritter import GSheetWritter
 from Package.VerbGenerator.ForbidVerbGenerator import ForbidVerbGenerator
 from Package.VerbGenerator.OrderVerbGenerator import OrderVerbGenerator
 from Package.VerbGenerator.PastVerbGenerator import PastVerbGenerator
 from Package.VerbGenerator.PresentVerbGenerator import PresentVerbGenerator
 from Package.VerbGenerator.NegativeFutureVerbGenerator import NegativeFutureVerbGenerator
-from Package.GSheetHandler.GSheetReader import GSheetReader
-from Package.GSheetHandler.GSheetWritter import GSheetWritter
+from Package.VerbGenerator.ForPresentVerbGenerator import ForPresentVerbGenerator
 
 def main():
     
@@ -16,6 +17,9 @@ def main():
     # Iterate each bab sheet
     for key, value in GSheetValues.BAB_SHEET_MAPPING.items():
         try:
+            if key != "فَتَحَ - يَفْتَحُ":
+                continue
+
             print(f"Start processing {key} bab ---> ")
 
             current_row = 0
@@ -46,6 +50,9 @@ def main():
                 negative_future_verb_generator = NegativeFutureVerbGenerator()
                 negative_future_forms = negative_future_verb_generator.get_forms(present_forms)
                 
+                for_present_verb_generator = ForPresentVerbGenerator()
+                for_present_forms = for_present_verb_generator.get_forms(present_forms)
+                
                 # Apply rules
                 rule_manager = RuleManager(past_forms)
                 past_forms = rule_manager.conjugations
@@ -60,17 +67,20 @@ def main():
                 print(f"Order Forms: {' | '.join(order_forms)}")
                 print(f"Forbid Forms: {' | '.join(forbid_forms)}")
                 print(f"Negative Future Forms: {' | '.join(negative_future_forms)}")
+                print(f"For Present Forms: {' | '.join(for_present_forms)}")
 
                 # Write forms to the sheet
                 sheet = gsheet_reader.sheet
                 current_row = gsheet_reader.current_row
-                gsheet_writter = GSheetWritter(sheet, current_row, past_forms, present_forms, order_forms, forbid_forms, negative_future_forms)
+                gsheet_writter = GSheetWritter(sheet, current_row, 
+                                               past_forms, present_forms, order_forms, forbid_forms, 
+                                               negative_future_forms, for_present_forms)
                 gsheet_writter.write_forms()
 
                 current_row += 2
                 root_processed += 1
 
-                if root_processed % 3 == 0:
+                if root_processed % 2 == 0:
                     print(f"Root processed: {root_processed}")
                     time.sleep(60)
 

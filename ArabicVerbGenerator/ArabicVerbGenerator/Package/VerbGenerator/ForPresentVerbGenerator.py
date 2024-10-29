@@ -19,7 +19,7 @@ class ForPresentVerbGenerator:
                 # Remove the last diacritic char if present
                 root = root[:-1]
                 
-                conjugated = f"{ForPresentVerbIndicators.prefixes[0]} {root}"
+                conjugated = f"{ForPresentVerbIndicators.prefixes[0]}{root}"
                 
                 if i != 3:
                     conjugated = f"{conjugated}{Diacritic.FATHA}"
