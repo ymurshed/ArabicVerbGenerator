@@ -1,7 +1,7 @@
 ﻿from Package.Constants.Bab import Bab
 from ..Constants.Diacritic import Diacritic
 from ..Constants.GSheetValues import GSheetValues
-from ..Constants.ForbidVerbIndicators import ForbidVerbIndicators
+from ..Constants.Indicators.ForbidVerbIndicators import ForbidVerbIndicators
 
 class ForbidVerbGenerator:
     def get_forms(self, order_forms, bab, masder):

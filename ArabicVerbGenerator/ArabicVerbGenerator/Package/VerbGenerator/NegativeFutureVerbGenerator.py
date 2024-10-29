@@ -1,5 +1,5 @@
 ﻿from ..Constants.Diacritic import Diacritic
-from ..Constants.NegativeFutureVerbIndicators import NegativeFutureVerbIndicators
+from ..Constants.Indicators.NegativeFutureVerbIndicators import NegativeFutureVerbIndicators
 
 class NegativeFutureVerbGenerator:
     def get_forms(self, present_forms):

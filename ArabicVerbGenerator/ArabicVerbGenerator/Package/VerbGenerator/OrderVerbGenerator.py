@@ -1,7 +1,7 @@
 ﻿from Package.Constants.Bab import Bab
 from ..Constants.Diacritic import Diacritic
 from ..Constants.GSheetValues import GSheetValues
-from ..Constants.OrderVerbIndicators import OrderVerbIndicators
+from ..Constants.Indicators.OrderVerbIndicators import OrderVerbIndicators
 
 class OrderVerbGenerator:
     def get_forms(self, present_forms, bab, masder):

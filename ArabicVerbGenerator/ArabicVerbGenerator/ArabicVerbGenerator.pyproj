@@ -26,12 +26,12 @@
     <Compile Include="Package\Constants\Diacritic.py" />
     <Compile Include="Package\Constants\Exceptions.py" />
     <Compile Include="Package\Constants\GSheetValues.py" />
-    <Compile Include="Package\Constants\ForbidVerbIndicators.py" />
-    <Compile Include="Package\Constants\ForPresentVerbIndicators.py" />
-    <Compile Include="Package\Constants\OrderVerbIndicators.py" />
-    <Compile Include="Package\Constants\NegativeFutureVerbIndicators.py" />
-    <Compile Include="Package\Constants\PresentVerbIndicators.py" />
-    <Compile Include="Package\Constants\PastVerbIndicators.py" />
+    <Compile Include="Package\Constants\Indicators\ForbidVerbIndicators.py" />
+    <Compile Include="Package\Constants\Indicators\ForPresentVerbIndicators.py" />
+    <Compile Include="Package\Constants\Indicators\OrderVerbIndicators.py" />
+    <Compile Include="Package\Constants\Indicators\NegativeFutureVerbIndicators.py" />
+    <Compile Include="Package\Constants\Indicators\PresentVerbIndicators.py" />
+    <Compile Include="Package\Constants\Indicators\PastVerbIndicators.py" />
     <Compile Include="Package\GSheetHandler\GSheetWritter.py" />
     <Compile Include="Package\GSheetHandler\GSheetReader.py" />
     <Compile Include="Package\Helpers\RuleManager.py" />
@@ -46,6 +46,7 @@
     <Folder Include="Credentials\" />
     <Folder Include="Package\Constants\" />
     <Folder Include="Package\" />
+    <Folder Include="Package\Constants\Indicators\" />
     <Folder Include="Package\GSheetHandler\" />
     <Folder Include="Package\Helpers\" />
     <Folder Include="Package\VerbGenerator\" />

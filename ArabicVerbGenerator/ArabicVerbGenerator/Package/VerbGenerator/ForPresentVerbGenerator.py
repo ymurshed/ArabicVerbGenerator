@@ -1,5 +1,5 @@
 ﻿from ..Constants.Diacritic import Diacritic
-from ..Constants.ForPresentVerbIndicators import ForPresentVerbIndicators
+from ..Constants.Indicators.ForPresentVerbIndicators import ForPresentVerbIndicators
 
 class ForPresentVerbGenerator:
     def get_forms(self, present_forms):

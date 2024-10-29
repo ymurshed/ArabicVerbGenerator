@@ -1,4 +1,4 @@
-﻿from .Diacritic import Diacritic
+﻿from ..Diacritic import Diacritic
 
 class PresentVerbIndicators:
     prefixes        = ["يَ", "تَ", "تَ", "تَ", "أَ"]

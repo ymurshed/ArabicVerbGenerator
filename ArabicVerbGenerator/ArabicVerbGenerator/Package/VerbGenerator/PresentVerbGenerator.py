@@ -1,7 +1,7 @@
 ﻿from ..Constants.Bab import Bab
 from ..Constants.Diacritic import Diacritic
 from ..Constants.GSheetValues import GSheetValues
-from ..Constants.PresentVerbIndicators import PresentVerbIndicators
+from ..Constants.Indicators.PresentVerbIndicators import PresentVerbIndicators
 
 class PresentVerbGenerator:
     def get_forms(self, root, bab, masder):
