@@ -4,17 +4,21 @@ from ..Constants.GSheetValues import GSheetValues
 from oauth2client.service_account import ServiceAccountCredentials
 
 class GSheetReader:
-    def __init__(self, sheetId):
+    def __init__(self, config, sheetId):
         try:
             self.__subdirectory = "Credentials"
-            self.__filename = "arabicverbgenerator-ff8d2c424453.json"
-        
+            self.__filename = config["sheet_config"]["credential_file"]
+
+            sheet_name = config["sheet_config"]["sheet_name"]
+            self.__start_row = config["sheet_config"]["start_row"]
+            self.__start_col = config["sheet_config"]["start_col"]
+
             scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
         
             service_account_credential_file = self.__get_full_file_path()
             creds = ServiceAccountCredentials.from_json_keyfile_name(service_account_credential_file, scope)
             client = gspread.authorize(creds)
-            self.__sheet = client.open(GSheetValues.GSHEET_NAME).get_worksheet(sheetId)
+            self.__sheet = client.open(sheet_name).get_worksheet(sheetId)
         
         except Exception as e:  
              print(f"An error occurred while getting sheet: {e}")
@@ -56,10 +60,10 @@ class GSheetReader:
         return file_path.resolve()
 
     def __get_starting_sheet_row(self, current_row):
-        start_cell_col = GSheetValues.START_CELL_COL
+        start_cell_col = self.__start_col
 
         if current_row == 0:
-            start_cell_row = GSheetValues.START_CELL_ROW
+            start_cell_row = self.__start_row
         else:
             start_cell_row = current_row
 

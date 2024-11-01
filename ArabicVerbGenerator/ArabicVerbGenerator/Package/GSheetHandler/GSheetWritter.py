@@ -6,6 +6,7 @@ class GSheetWritter:
     def __init__(self, sheet: Worksheet, current_row, 
                  past_forms, present_forms, order_forms, forbid_forms, 
                  negative_future_forms, for_present_forms):
+        
         self.__sheet                 = sheet
         self.__current_row           = current_row
         self.__past_forms            = past_forms

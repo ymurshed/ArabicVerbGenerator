@@ -1,4 +1,5 @@
 ﻿import time
+import json
 from Package.Constants.GSheetValues import GSheetValues
 from Package.GSheetHandler.GSheetReader import GSheetReader
 from Package.Helpers.VerbManager import VerbManager
@@ -6,7 +7,12 @@ from Package.Helpers.VerbManager import VerbManager
 def main():
     
     print("Welcome to the arabic verb generator!")
-        
+    
+    # Load configs
+    config = load_config('config.json')
+    max_row_process_per_iteration = config["sheet_config"]["max_row_process_per_iteration"]
+    write_delay_per_iteration = config["sheet_config"]["write_delay_per_iteration"]
+
     # Iterate each bab sheet
     for key, value in GSheetValues.BAB_SHEET_MAPPING.items():
         try:
@@ -17,7 +23,7 @@ def main():
 
             current_row = 0
             root_processed = 0
-            gsheet_reader = GSheetReader(value)
+            gsheet_reader = GSheetReader(config, value)
             
             while True:
                 root, bab, masder = gsheet_reader.get_root_bab_masder(current_row)
@@ -33,15 +39,18 @@ def main():
                 current_row += 2
                 root_processed += 1
 
-                if root_processed % 2 == 0:
+                if root_processed % max_row_process_per_iteration == 0:
                     print(f"Root processed: {root_processed}")
-                    time.sleep(60)
+                    time.sleep(write_delay_per_iteration)
 
             print(f"Complete processing {key} bab <--- ")
 
         except Exception as e:  
             print(f"An error occurred in Main while processing {key} bab. Exception details: {e}")
 
+def load_config(file_path):
+    with open(file_path, 'r') as config_file:
+        return json.load(config_file)
 
 if __name__ == "__main__":
     main()

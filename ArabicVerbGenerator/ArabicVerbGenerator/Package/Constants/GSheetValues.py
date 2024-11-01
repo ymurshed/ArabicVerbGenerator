@@ -1,5 +1,4 @@
 ﻿class GSheetValues:
-    GSHEET_NAME = "Arabic Verb"
     BAB_SHEET_MAPPING = {
         "نَصَرَ- يَنْصُرُ"     : 1,
         "ضَرَبَ - يَضْرِبُ"    : 2,
