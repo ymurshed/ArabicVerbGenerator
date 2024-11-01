@@ -56,10 +56,10 @@ class GSheetReader:
         return file_path.resolve()
 
     def __get_starting_sheet_row(self, current_row):
-        start_cell_col = GSheetValues.PAST_FORM_1ST_PERSON_CELL_COL
+        start_cell_col = GSheetValues.START_CELL_COL
 
         if current_row == 0:
-            start_cell_row = GSheetValues.PAST_FORM_1ST_PERSON_CELL_ROW
+            start_cell_row = GSheetValues.START_CELL_ROW
         else:
             start_cell_row = current_row
 

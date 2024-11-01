@@ -1,0 +1,2 @@
+﻿class ObjectVerbIndicators:
+    prefixes = ["أَنْ"]
