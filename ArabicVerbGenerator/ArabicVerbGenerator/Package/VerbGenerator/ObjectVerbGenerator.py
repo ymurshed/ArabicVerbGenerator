@@ -1,5 +1,5 @@
 ﻿from ..Constants.Diacritic import Diacritic
-from ..Constants.Indicators.ForPresentVerbIndicators import ForPresentVerbIndicators
+from ..Constants.Indicators.ObjectVerbIndicators import ObjectVerbIndicators
 
 class ObjectVerbGenerator:
     def get_forms(self, present_forms):
@@ -19,7 +19,7 @@ class ObjectVerbGenerator:
                 # Remove the last diacritic char if present
                 root = root[:-1]
                 
-                conjugated = f"{ForPresentVerbIndicators.prefixes[0]}{root}"
+                conjugated = f"{ObjectVerbIndicators.prefixes[0]} {root}"
                 
                 if i != 3:
                     conjugated = f"{conjugated}{Diacritic.FATHA}"

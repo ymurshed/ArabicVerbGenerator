@@ -12,13 +12,10 @@ def main():
     config = load_config('config.json')
     max_row_process_per_iteration = config["sheet_config"]["max_row_process_per_iteration"]
     write_delay_per_iteration = config["sheet_config"]["write_delay_per_iteration"]
-
+    
     # Iterate each bab sheet
     for key, value in GSheetValues.BAB_SHEET_MAPPING.items():
         try:
-            # if key != "فَتَحَ - يَفْتَحُ":
-            #     continue
-
             print(f"Start processing {key} bab ---> ")
 
             current_row = 0
@@ -49,8 +46,11 @@ def main():
             print(f"An error occurred in Main while processing {key} bab. Exception details: {e}")
 
 def load_config(file_path):
-    with open(file_path, 'r') as config_file:
-        return json.load(config_file)
+    try:
+        with open(file_path, 'r') as config_file:
+            return json.load(config_file)
+    except Exception as e:  
+            print(f"An error occurred in load_config. Exception details: {e}")
 
 if __name__ == "__main__":
     main()

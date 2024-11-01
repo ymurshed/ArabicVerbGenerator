@@ -44,14 +44,6 @@ class GSheetReader:
         except Exception as e:  
              print(f"An error occurred while getting masder, root and bab from sheet: {e}")
 
-    @property
-    def current_row(self):
-        return self.__current_row
-
-    @property
-    def sheet(self):
-        return self.__sheet
-
     def __get_full_file_path(self):
         current_directory = Path(__file__).parent
         project_directory = current_directory.parent.parent
