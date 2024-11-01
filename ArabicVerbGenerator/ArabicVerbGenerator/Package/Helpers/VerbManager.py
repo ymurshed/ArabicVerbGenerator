@@ -1,6 +1,5 @@
+from gspread.worksheet import Worksheet
 from ..Helpers.RuleManager import RuleManager
-from ..Constants.GSheetValues import GSheetValues
-from ..GSheetHandler.GSheetReader import GSheetReader
 from ..GSheetHandler.GSheetWritter import GSheetWritter
 from ..VerbGenerator.ForbidVerbGenerator import ForbidVerbGenerator
 from ..VerbGenerator.OrderVerbGenerator import OrderVerbGenerator
@@ -53,7 +52,7 @@ class VerbManager:
         print(f"Negative Future Forms: {' | '.join(self.__negative_future_forms)}")
         print(f"For Present Forms: {' | '.join(self.__for_present_forms)}")
 
-    def write_forms(self, gsheet_reader):
+    def write_forms(self, gsheet_reader: Worksheet):
         sheet = gsheet_reader.sheet
         current_row = gsheet_reader.current_row
         gsheet_writter = GSheetWritter(sheet, current_row, 

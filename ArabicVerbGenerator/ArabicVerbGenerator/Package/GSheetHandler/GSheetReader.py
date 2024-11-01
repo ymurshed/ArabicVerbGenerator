@@ -6,15 +6,15 @@ from oauth2client.service_account import ServiceAccountCredentials
 class GSheetReader:
     def __init__(self, sheetId):
         try:
-            self.subdirectory = "Credentials"
-            self.filename = "arabicverbgenerator-ff8d2c424453.json"
+            self.__subdirectory = "Credentials"
+            self.__filename = "arabicverbgenerator-ff8d2c424453.json"
         
             scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
         
             service_account_credential_file = self.__get_full_file_path()
             creds = ServiceAccountCredentials.from_json_keyfile_name(service_account_credential_file, scope)
             client = gspread.authorize(creds)
-            self._sheet = client.open(GSheetValues.GSHEET_NAME).get_worksheet(sheetId)
+            self.__sheet = client.open(GSheetValues.GSHEET_NAME).get_worksheet(sheetId)
         
         except Exception as e:  
              print(f"An error occurred while getting sheet: {e}")
@@ -26,11 +26,11 @@ class GSheetReader:
             masder_start_cell_col = start_cell_col - 3
             root_start_cell_col = start_cell_col - 2
             bab_start_cell_col = start_cell_col - 1
-            self._current_row = start_cell_row # Save it for next iteration
+            self.__current_row = start_cell_row # Save it for next iteration
 
-            masder_value = self._sheet.cell(start_cell_row, masder_start_cell_col).value
-            root_value = self._sheet.cell(start_cell_row, root_start_cell_col).value
-            bab_value = self._sheet.cell(start_cell_row, bab_start_cell_col).value
+            masder_value = self.__sheet.cell(start_cell_row, masder_start_cell_col).value
+            root_value = self.__sheet.cell(start_cell_row, root_start_cell_col).value
+            bab_value = self.__sheet.cell(start_cell_row, bab_start_cell_col).value
             
             if self.__is_null_or_empty(masder_value) or self.__is_null_or_empty(root_value) or self.__is_null_or_empty(bab_value):
                 return
@@ -42,17 +42,17 @@ class GSheetReader:
 
     @property
     def current_row(self):
-        return self._current_row
+        return self.__current_row
 
     @property
     def sheet(self):
-        return self._sheet
+        return self.__sheet
 
     def __get_full_file_path(self):
         current_directory = Path(__file__).parent
         project_directory = current_directory.parent.parent
-        file_directory = project_directory / self.subdirectory
-        file_path = file_directory / self.filename
+        file_directory = project_directory / self.__subdirectory
+        file_path = file_directory / self.__filename
         return file_path.resolve()
 
     def __get_starting_sheet_row(self, current_row):
@@ -63,14 +63,14 @@ class GSheetReader:
         else:
             start_cell_row = current_row
 
-        root_value = self._sheet.cell(start_cell_row, start_cell_col).value
+        root_value = self.__sheet.cell(start_cell_row, start_cell_col).value
 
         if self.__is_null_or_empty(root_value):
             return (start_cell_row, start_cell_col)
 
         while True:
             start_cell_row += 2
-            root_value = self._sheet.cell(start_cell_row, start_cell_col).value
+            root_value = self.__sheet.cell(start_cell_row, start_cell_col).value
 
             if self.__is_null_or_empty(root_value):
                 break

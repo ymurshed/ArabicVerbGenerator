@@ -1,0 +1,12 @@
+{
+  "app_name": "Arabic Verb Generator",
+  "version": "1.0",
+  "debug": true,
+  "sheet_config": {
+    "start_row": 4,
+    "start_col": 6,
+    "max_row_process_per_iteration": 2,
+    "write_delay_per_iteration": 60,
+    "credential_file": "arabicverbgenerator-ff8d2c424453.json"
+  }
+}

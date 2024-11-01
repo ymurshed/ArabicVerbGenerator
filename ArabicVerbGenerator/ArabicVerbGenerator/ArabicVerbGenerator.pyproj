@@ -55,6 +55,7 @@
     <Folder Include="Package\VerbGenerator\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config.json" />
     <Content Include="Credentials\arabicverbgenerator-ff8d2c424453.json" />
     <Content Include="Package\VerbGenerator\PastVerbGenerator.py" />
   </ItemGroup>
