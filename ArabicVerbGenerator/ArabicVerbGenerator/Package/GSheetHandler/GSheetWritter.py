@@ -16,20 +16,37 @@ class GSheetWritter:
         self.__negative_future_forms = negative_future_forms
         self.__for_present_forms     = for_present_forms
         self.__object_forms          = object_forms
-        
+    
+    def _is_cell_blank(self, col):
+        cell_val = self.__sheet.cell(self.__current_row, col).value
+        return cell_val is None or cell_val == ''
+
     def write_forms(self):
         try:
-           self.__write_past_forms()
-           self.__write_present_forms()
-           self.__write_order_forms()
-           self.__write_forbid_forms()
-           self.__write_negative_future_forms()
-           self.__write_for_present_forms()
-           self.__write_object_forms()
+            if self._is_cell_blank(GSheetValues.PAST_FORM_3RD_PERSON_CELL_COL):
+                self.__write_past_forms()
+
+            if self._is_cell_blank(GSheetValues.PRESENT_FORM_3RD_PERSON_CELL_COL):
+                self.__write_present_forms()
+
+            if self._is_cell_blank(GSheetValues.ORDER_FORM_2ND_PERSON_CELL_COL):
+                self.__write_order_forms()
+            
+            if self._is_cell_blank(GSheetValues.FORBID_FORM_2ND_PERSON_CELL_COL):
+                self.__write_forbid_forms()
+            
+            if self._is_cell_blank(GSheetValues.NEGATIVE_FUTURE_FORM_3RD_PERSON_CELL_COL):
+                self.__write_negative_future_forms()
+
+            if self._is_cell_blank(GSheetValues.FOR_PRESENT_FORM_3RD_PERSON_CELL_COL):
+                self.__write_for_present_forms()
+            
+            if self._is_cell_blank(GSheetValues.OBJECT_PAST_FORM_3RD_PERSON_CELL_COL):
+                self.__write_object_forms()
 
         except Exception as e:  
              print(f"An error occurred while writting forms in sheet: {e}")            
-
+    
     def __write_past_forms(self):
         row = self.__current_row
         col = GSheetValues.PAST_FORM_3RD_PERSON_CELL_COL
@@ -46,7 +63,7 @@ class GSheetWritter:
         row = self.__current_row
         col = GSheetValues.PAST_FORM_1ST_PERSON_CELL_COL
         self.__sheet.update_cell(row, col, self.__past_forms[4])
-        
+    
     def __write_present_forms(self):
         row = self.__current_row
         col = GSheetValues.PRESENT_FORM_3RD_PERSON_CELL_COL
