@@ -29,12 +29,24 @@ class VerbManager:
     def apply_rules(self):
         rule_manager = RuleManager(self.__past_forms)
         self.__past_forms = rule_manager.conjugations
+
         rule_manager = RuleManager(self.__present_forms)
         self.__present_forms = rule_manager.conjugations
+        
         rule_manager = RuleManager(self.__order_forms)
         self.__order_forms = rule_manager.conjugations
+        
         rule_manager = RuleManager(self.__forbid_forms)
         self.__forbid_forms = rule_manager.conjugations
+        
+        rule_manager = RuleManager(self.__negative_future_forms)
+        self.__negative_future_forms = rule_manager.conjugations
+
+        rule_manager = RuleManager(self.__for_present_forms)
+        self.__for_present_forms = rule_manager.conjugations
+
+        rule_manager = RuleManager(self.__object_forms)
+        self.__object_forms = rule_manager.conjugations
     
     def print_forms(self):
         print(f"Past Forms: {' | '.join(self.__past_forms)}")
@@ -43,13 +55,14 @@ class VerbManager:
         print(f"Forbid Forms: {' | '.join(self.__forbid_forms)}")
         print(f"Negative Future Forms: {' | '.join(self.__negative_future_forms)}")
         print(f"For Present Forms: {' | '.join(self.__for_present_forms)}")
+        print(f"Object Forms: {' | '.join(self.__object_forms)}")
 
     def write_forms(self, gsheet_reader: Worksheet):
         sheet = gsheet_reader.sheet
         current_row = gsheet_reader.current_row
         gsheet_writter = GSheetWritter(sheet, current_row, 
                                        self.__past_forms, self.__present_forms, self.__order_forms, self.__forbid_forms, 
-                                       self.__negative_future_forms, self.__for_present_forms)
+                                       self.__negative_future_forms, self.__for_present_forms, self.__object_forms)
         gsheet_writter.write_forms()
 
     def __generate_past_forms(self):
@@ -104,6 +117,7 @@ class VerbManager:
         object_verb_generator = ObjectVerbGenerator()
         self.__object_forms = object_verb_generator.get_forms(self.__present_forms)
 
-        self.__object_past_forms    = [a + " " + b for a, b in zip(past_forms, self.__object_forms)]
-        self.__object_present_forms = [a + " " + b for a, b in zip(present_forms, self.__object_forms)]
-        x = 10
+        object_past_forms    = [a + " " + b for a, b in zip(past_forms, self.__object_forms)]
+        object_present_forms = [a + " " + b for a, b in zip(present_forms, self.__object_forms)]
+        self.__object_forms  = object_past_forms + object_present_forms
+        
