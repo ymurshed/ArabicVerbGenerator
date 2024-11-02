@@ -4,8 +4,8 @@
   "debug": true,
   "sheet_config": {
     "sheet_name": "Arabic Verb",
-    "start_row": 4,
-    "start_col": 6,
+    "first_start_row": 4,
+    "last_start_col": 20,
     "max_row_process_per_iteration": 2,
     "write_delay_per_iteration": 60,
     "credential_file": "arabicverbgenerator-ff8d2c424453.json"

@@ -17,6 +17,8 @@ def main():
     for key, value in GSheetValues.BAB_SHEET_MAPPING.items():
         try:
             print(f"Start processing {key} bab ---> ")
+            if key != "بَابُ الإفْعَالِ":
+                continue
 
             current_row = 0
             root_processed = 0
@@ -27,6 +29,9 @@ def main():
                 if root is None or bab is None or masder is None:
                     break
 
+                if current_row == 0:
+                    current_row = gsheet_reader.current_row
+                
                 verb_manager = VerbManager(root, bab, masder)
                 verb_manager.generate_forms()
                 verb_manager.apply_rules()

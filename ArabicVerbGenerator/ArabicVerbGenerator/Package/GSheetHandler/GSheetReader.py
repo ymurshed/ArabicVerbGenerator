@@ -10,8 +10,8 @@ class GSheetReader:
             self.__filename = config["sheet_config"]["credential_file"]
 
             sheet_name = config["sheet_config"]["sheet_name"]
-            self.__start_row = config["sheet_config"]["start_row"]
-            self.__start_col = config["sheet_config"]["start_col"]
+            self.__start_row = config["sheet_config"]["first_start_row"]
+            self.__start_col = config["sheet_config"]["last_start_col"]
 
             scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
         
@@ -26,15 +26,12 @@ class GSheetReader:
     def get_root_bab_masder(self, current_row = 0):
         try:
             # Find index from where in every cycle it will start filling data
-            start_cell_row, start_cell_col = self.__get_starting_sheet_row(current_row)
-            masder_start_cell_col = start_cell_col - 3
-            root_start_cell_col = start_cell_col - 2
-            bab_start_cell_col = start_cell_col - 1
+            start_cell_row = self.__get_starting_sheet_row(current_row)
             self.__current_row = start_cell_row # Save it for next iteration
 
-            masder_value = self.__sheet.cell(start_cell_row, masder_start_cell_col).value
-            root_value = self.__sheet.cell(start_cell_row, root_start_cell_col).value
-            bab_value = self.__sheet.cell(start_cell_row, bab_start_cell_col).value
+            bab_value    = self.__sheet.cell(start_cell_row, GSheetValues.BAB_COl).value
+            root_value   = self.__sheet.cell(start_cell_row, GSheetValues.ROOT_COl).value
+            masder_value = self.__sheet.cell(start_cell_row, GSheetValues.MASDER_COl).value
             
             if self.__is_null_or_empty(masder_value) or self.__is_null_or_empty(root_value) or self.__is_null_or_empty(bab_value):
                 return
@@ -44,6 +41,14 @@ class GSheetReader:
         except Exception as e:  
              print(f"An error occurred while getting masder, root and bab from sheet: {e}")
 
+    @property
+    def current_row(self):
+        return self.__current_row
+
+    @property
+    def sheet(self):
+        return self.__sheet
+
     def __get_full_file_path(self):
         current_directory = Path(__file__).parent
         project_directory = current_directory.parent.parent
@@ -52,26 +57,24 @@ class GSheetReader:
         return file_path.resolve()
 
     def __get_starting_sheet_row(self, current_row):
-        start_cell_col = self.__start_col
-
         if current_row == 0:
             start_cell_row = self.__start_row
         else:
             start_cell_row = current_row
 
-        root_value = self.__sheet.cell(start_cell_row, start_cell_col).value
+        root_value = self.__sheet.cell(start_cell_row, self.__start_col).value
 
         if self.__is_null_or_empty(root_value):
-            return (start_cell_row, start_cell_col)
+            return start_cell_row
 
         while True:
             start_cell_row += 2
-            root_value = self.__sheet.cell(start_cell_row, start_cell_col).value
+            root_value = self.__sheet.cell(start_cell_row, self.__start_col).value
 
             if self.__is_null_or_empty(root_value):
                 break
 
-        return (start_cell_row, start_cell_col)
+        return start_cell_row
 
     def __is_null_or_empty(self, str):
         return str is None or str == ''
