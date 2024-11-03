@@ -48,7 +48,6 @@
     <Compile Include="Package\VerbGenerator\NegativePastVerbGenerator.py" />
     <Compile Include="Package\VerbGenerator\PresentVerbGenerator.py" />
     <Compile Include="Root.py" />
-    <Compile Include="WorkerService1.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Credentials\" />
