@@ -5,7 +5,7 @@
     <ProjectGuid>de957d5b-af7f-400f-ae0f-d1b1c64dc870</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>root.py</StartupFile>
+    <StartupFile>Root.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -31,6 +31,8 @@
     <Compile Include="Package\Constants\Indicators\ObjectVerbIndicators.py" />
     <Compile Include="Package\Constants\Indicators\OrderVerbIndicators.py" />
     <Compile Include="Package\Constants\Indicators\NegativeFutureVerbIndicators.py" />
+    <Compile Include="Package\Constants\Indicators\NegativePastVerbIndicators.py" />
+    <Compile Include="Package\Constants\Indicators\NegativePresentVerbIndicators.py" />
     <Compile Include="Package\Constants\Indicators\PresentVerbIndicators.py" />
     <Compile Include="Package\Constants\Indicators\PastVerbIndicators.py" />
     <Compile Include="Package\GSheetHandler\GSheetWritter.py" />
@@ -42,8 +44,11 @@
     <Compile Include="Package\VerbGenerator\ForPresentVerbGenerator.py" />
     <Compile Include="Package\VerbGenerator\OrderVerbGenerator.py" />
     <Compile Include="Package\VerbGenerator\NegativeFutureVerbGenerator.py" />
+    <Compile Include="Package\VerbGenerator\NegativePresentVerbGenerator.py" />
+    <Compile Include="Package\VerbGenerator\NegativePastVerbGenerator.py" />
     <Compile Include="Package\VerbGenerator\PresentVerbGenerator.py" />
-    <Compile Include="root.py" />
+    <Compile Include="Root.py" />
+    <Compile Include="WorkerService1.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Credentials\" />

@@ -1,0 +1,2 @@
+﻿class NegativePastVerbIndicators:
+    prefixes = ['مَا']

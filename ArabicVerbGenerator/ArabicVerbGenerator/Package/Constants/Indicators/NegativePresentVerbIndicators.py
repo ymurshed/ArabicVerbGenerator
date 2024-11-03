@@ -1,0 +1,2 @@
+﻿class NegativePresentVerbIndicators:
+    prefixes = ["لا"]

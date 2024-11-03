@@ -4,18 +4,20 @@ from ..Constants.GSheetValues import GSheetValues
 
 class GSheetWritter:
     def __init__(self, sheet: Worksheet, current_row, 
-                 past_forms, present_forms, order_forms, forbid_forms, 
-                 negative_future_forms, for_present_forms, object_forms):
+                 past_forms, present_forms, negative_past_forms, negative_present_forms,  
+                 order_forms, forbid_forms, negative_future_forms, for_present_forms, object_forms):
         
-        self.__sheet                 = sheet
-        self.__current_row           = current_row
-        self.__past_forms            = past_forms
-        self.__present_forms         = present_forms
-        self.__order_forms           = order_forms
-        self.__forbid_forms          = forbid_forms
-        self.__negative_future_forms = negative_future_forms
-        self.__for_present_forms     = for_present_forms
-        self.__object_forms          = object_forms
+        self.__sheet                    = sheet
+        self.__current_row              = current_row
+        self.__past_forms               = past_forms
+        self.__present_forms            = present_forms
+        self.__negative_past_forms      = negative_past_forms
+        self.__negative_present_forms   = negative_present_forms
+        self.__order_forms              = order_forms
+        self.__forbid_forms             = forbid_forms
+        self.__negative_future_forms    = negative_future_forms
+        self.__for_present_forms        = for_present_forms
+        self.__object_forms             = object_forms
     
     def _is_cell_blank(self, col):
         cell_val = self.__sheet.cell(self.__current_row, col).value
@@ -28,6 +30,12 @@ class GSheetWritter:
 
             if self._is_cell_blank(GSheetValues.PRESENT_FORM_3RD_PERSON_CELL_COL):
                 self.__write_present_forms()
+
+            if self._is_cell_blank(GSheetValues.NEGATIVE_PAST_FORM_3RD_PERSON_CELL_COL):
+                self.__write_negative_past_forms()
+
+            if self._is_cell_blank(GSheetValues.NEGATIVE_PRESENT_FORM_3RD_PERSON_CELL_COL):
+                self.__write_negative_present_forms()
 
             if self._is_cell_blank(GSheetValues.ORDER_FORM_2ND_PERSON_CELL_COL):
                 self.__write_order_forms()
@@ -80,6 +88,40 @@ class GSheetWritter:
         row = self.__current_row
         col = GSheetValues.PRESENT_FORM_1ST_PERSON_CELL_COL
         self.__sheet.update_cell(row, col, self.__present_forms[4])
+
+    def __write_negative_past_forms(self):
+        row = self.__current_row
+        col = GSheetValues.NEGATIVE_PAST_FORM_3RD_PERSON_CELL_COL
+        self.__sheet.update_cell(row, col, self.__negative_past_forms[0])
+        row = self.__current_row + 1
+        self.__sheet.update_cell(row, col, self.__negative_past_forms[1])
+
+        row = self.__current_row
+        col = GSheetValues.NEGATIVE_PAST_FORM_2ND_PERSON_CELL_COL
+        self.__sheet.update_cell(row, col, self.__negative_past_forms[2])
+        row = self.__current_row + 1
+        self.__sheet.update_cell(row, col, self.__negative_past_forms[3])
+
+        row = self.__current_row
+        col = GSheetValues.NEGATIVE_PAST_FORM_1ST_PERSON_CELL_COL
+        self.__sheet.update_cell(row, col, self.__negative_past_forms[4])
+    
+    def __write_negative_present_forms(self):
+        row = self.__current_row
+        col = GSheetValues.NEGATIVE_PRESENT_FORM_3RD_PERSON_CELL_COL
+        self.__sheet.update_cell(row, col, self.__negative_present_forms[0])
+        row = self.__current_row + 1
+        self.__sheet.update_cell(row, col, self.__negative_present_forms[1])
+
+        row = self.__current_row
+        col = GSheetValues.NEGATIVE_PRESENT_FORM_2ND_PERSON_CELL_COL
+        self.__sheet.update_cell(row, col, self.__negative_present_forms[2])
+        row = self.__current_row + 1
+        self.__sheet.update_cell(row, col, self.__negative_present_forms[3])
+
+        row = self.__current_row
+        col = GSheetValues.NEGATIVE_PRESENT_FORM_1ST_PERSON_CELL_COL
+        self.__sheet.update_cell(row, col, self.__negative_present_forms[4])
 
     def __write_order_forms(self):
         row = self.__current_row

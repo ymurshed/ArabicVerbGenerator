@@ -10,6 +10,8 @@ from ..VerbGenerator.PresentVerbGenerator import PresentVerbGenerator
 from ..VerbGenerator.NegativeFutureVerbGenerator import NegativeFutureVerbGenerator
 from ..VerbGenerator.ForPresentVerbGenerator import ForPresentVerbGenerator
 from ..VerbGenerator.ObjectVerbGenerator import ObjectVerbGenerator
+from ..VerbGenerator.NegativePastVerbGenerator import NegativePastVerbGenerator
+from ..VerbGenerator.NegativePresentVerbGenerator import NegativePresentVerbGenerator
 
 class VerbManager:
     def __init__(self, root, bab, masder):
@@ -20,6 +22,8 @@ class VerbManager:
     def generate_forms(self):
         self.__generate_past_forms()
         self.__generate_present_forms()
+        self.__generate_negative_past_forms()
+        self.__generate_negative_present_forms()
         self.__generate_order_forms()
         self.__generate_forbid_forms()
         self.__generate_negative_future_forms()
@@ -33,6 +37,12 @@ class VerbManager:
         rule_manager = RuleManager(self.__present_forms)
         self.__present_forms = rule_manager.conjugations
         
+        rule_manager = RuleManager(self.__negative_past_forms)
+        self.__negative_past_forms = rule_manager.conjugations
+
+        rule_manager = RuleManager(self.__negative_present_forms)
+        self.__negative_present_forms = rule_manager.conjugations
+
         rule_manager = RuleManager(self.__order_forms)
         self.__order_forms = rule_manager.conjugations
         
@@ -51,6 +61,8 @@ class VerbManager:
     def print_forms(self):
         print(f"Past Forms: {' | '.join(self.__past_forms)}")
         print(f"Present/Future Forms: {' | '.join(self.__present_forms)}")
+        print(f"Negative Past Forms: {' | '.join(self.__negative_past_forms)}")
+        print(f"Negative Present/Future Forms: {' | '.join(self.__negative_present_forms)}")
         print(f"Order Forms: {' | '.join(self.__order_forms)}")
         print(f"Forbid Forms: {' | '.join(self.__forbid_forms)}")
         print(f"Negative Future Forms: {' | '.join(self.__negative_future_forms)}")
@@ -61,8 +73,8 @@ class VerbManager:
         sheet = gsheet_reader.sheet
         current_row = gsheet_reader.current_row
         gsheet_writter = GSheetWritter(sheet, current_row, 
-                                       self.__past_forms, self.__present_forms, self.__order_forms, self.__forbid_forms, 
-                                       self.__negative_future_forms, self.__for_present_forms, self.__object_forms)
+                                       self.__past_forms, self.__present_forms, self.__negative_past_forms, self.__negative_present_forms,
+                                       self.__order_forms, self.__forbid_forms, self.__negative_future_forms, self.__for_present_forms, self.__object_forms)
         gsheet_writter.write_forms()
 
     def __generate_past_forms(self):
@@ -76,6 +88,10 @@ class VerbManager:
         past_forms.insert(0, root)
         return past_forms
 
+    def __generate_negative_past_forms(self):
+        negative_past_verb_generator = NegativePastVerbGenerator()
+        self.__negative_past_forms = negative_past_verb_generator.get_forms(self.__past_forms)
+        
     def __generate_present_forms(self):
         present_verb_generator = PresentVerbGenerator()
         self.__present_forms = present_verb_generator.get_forms(self.__root, self.__bab, self.__masder)
@@ -84,6 +100,10 @@ class VerbManager:
         present_verb_generator = PresentVerbGenerator()
         present_forms = present_verb_generator.get_forms(root, bab, masder)
         return present_forms
+
+    def __generate_negative_present_forms(self):
+        negative_present_verb_generator = NegativePresentVerbGenerator()
+        self.__negative_present_forms = negative_present_verb_generator.get_forms(self.__present_forms)
 
     def __generate_order_forms(self):
         order_verb_generator = OrderVerbGenerator()
