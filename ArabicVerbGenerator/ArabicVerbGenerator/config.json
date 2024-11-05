@@ -2,6 +2,7 @@
   "app_name": "Arabic Verb Generator",
   "version": "1.0",
   "debug": true,
+  "interval": 20,  
   "sheet_config": {
     "sheet_name": "Arabic Verb",
     "first_start_row": 4,
