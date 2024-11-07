@@ -5,10 +5,10 @@ from ..Constants.GSheetValues import GSheetValues
 from oauth2client.service_account import ServiceAccountCredentials
 
 class GSheetReader:
-    def __init__(self, logger: Logger, config, sheetId):
+    def __init__(self, logger: Logger, config, sheetId, subdirectory):
         try:
             self.__logger = logger
-            self.__subdirectory = "Credentials"
+            self.__subdirectory = subdirectory
             self.__filename = config["sheet_config"]["credential_file"]
 
             sheet_name = config["sheet_config"]["sheet_name"]

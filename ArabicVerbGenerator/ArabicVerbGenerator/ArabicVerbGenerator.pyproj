@@ -51,7 +51,7 @@
     <Compile Include="Root.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Credentials\" />
+    <Folder Include="Assets\" />
     <Folder Include="Package\Constants\" />
     <Folder Include="Package\" />
     <Folder Include="Package\Constants\Indicators\" />
@@ -60,8 +60,12 @@
     <Folder Include="Package\VerbGenerator\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="config.json" />
-    <Content Include="Credentials\arabicverbgenerator-ff8d2c424453.json" />
+    <Content Include="Assets\arabicverbgenerator-ff8d2c424453.json">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="Assets\config.json">
+      <Publish>True</Publish>
+    </Content>
     <Content Include="Package\VerbGenerator\PastVerbGenerator.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
