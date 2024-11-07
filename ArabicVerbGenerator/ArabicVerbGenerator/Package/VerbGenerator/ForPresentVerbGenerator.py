@@ -27,7 +27,7 @@ class ForPresentVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in ForPresentVerbGenerator: {e}")
+             raise f"An error occurred in ForPresentVerbGenerator: {e}"
 
         return conjugations
 

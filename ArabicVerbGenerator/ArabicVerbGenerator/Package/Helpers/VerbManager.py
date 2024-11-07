@@ -1,4 +1,5 @@
-﻿from gspread.worksheet import Worksheet
+﻿from logging import Logger
+from gspread.worksheet import Worksheet
 from ..Constants.Bab import Bab
 from ..Constants.GSheetValues import GSheetValues
 from ..Helpers.RuleManager import RuleManager
@@ -14,7 +15,8 @@ from ..VerbGenerator.NegativePastVerbGenerator import NegativePastVerbGenerator
 from ..VerbGenerator.NegativePresentVerbGenerator import NegativePresentVerbGenerator
 
 class VerbManager:
-    def __init__(self, root, bab, masder):
+    def __init__(self, logger: Logger, root, bab, masder):
+        self.__logger = logger
         self.__root   = root
         self.__bab    = bab
         self.__masder = masder
@@ -58,21 +60,21 @@ class VerbManager:
         rule_manager = RuleManager(self.__object_forms)
         self.__object_forms = rule_manager.conjugations
     
-    def print_forms(self):
-        print(f"Past Forms: {' | '.join(self.__past_forms)}")
-        print(f"Present/Future Forms: {' | '.join(self.__present_forms)}")
-        print(f"Negative Past Forms: {' | '.join(self.__negative_past_forms)}")
-        print(f"Negative Present/Future Forms: {' | '.join(self.__negative_present_forms)}")
-        print(f"Order Forms: {' | '.join(self.__order_forms)}")
-        print(f"Forbid Forms: {' | '.join(self.__forbid_forms)}")
-        print(f"Negative Future Forms: {' | '.join(self.__negative_future_forms)}")
-        print(f"For Present Forms: {' | '.join(self.__for_present_forms)}")
-        print(f"Object Forms: {' | '.join(self.__object_forms)}")
+    def log_forms(self):
+        self.__logger.info(f"Past Forms: {' | '.join(self.__past_forms)}")
+        self.__logger.info(f"Present/Future Forms: {' | '.join(self.__present_forms)}")
+        self.__logger.info(f"Negative Past Forms: {' | '.join(self.__negative_past_forms)}")
+        self.__logger.info(f"Negative Present/Future Forms: {' | '.join(self.__negative_present_forms)}")
+        self.__logger.info(f"Order Forms: {' | '.join(self.__order_forms)}")
+        self.__logger.info(f"Forbid Forms: {' | '.join(self.__forbid_forms)}")
+        self.__logger.info(f"Negative Future Forms: {' | '.join(self.__negative_future_forms)}")
+        self.__logger.info(f"For Present Forms: {' | '.join(self.__for_present_forms)}")
+        self.__logger.info(f"Object Forms: {' | '.join(self.__object_forms)}")
 
     def write_forms(self, gsheet_reader: Worksheet):
         sheet = gsheet_reader.sheet
         current_row = gsheet_reader.current_row
-        gsheet_writter = GSheetWritter(sheet, current_row, 
+        gsheet_writter = GSheetWritter(self.__logger, sheet, current_row, 
                                        self.__past_forms, self.__present_forms, self.__negative_past_forms, self.__negative_present_forms,
                                        self.__order_forms, self.__forbid_forms, self.__negative_future_forms, self.__for_present_forms, self.__object_forms)
         gsheet_writter.write_forms()

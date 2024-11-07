@@ -20,11 +20,11 @@ def main():
     # Iterate each bab sheet
     for key, value in GSheetValues.BAB_SHEET_MAPPING.items():
         try:
-            logger.info("Start processing {key} bab --->")
+            logger.info(f"Start processing {key} bab --->")
             
             current_row = 0
             root_processed = 0
-            gsheet_reader = GSheetReader(config, value)
+            gsheet_reader = GSheetReader(logger, config, value)
             
             while True:
                 try:
@@ -35,10 +35,10 @@ def main():
                     if current_row == 0:
                         current_row = gsheet_reader.current_row
                 
-                    verb_manager = VerbManager(root, bab, masder)
+                    verb_manager = VerbManager(logger, root, bab, masder)
                     verb_manager.generate_forms()
                     verb_manager.apply_rules()
-                    verb_manager.print_forms()
+                    verb_manager.log_forms()
                     verb_manager.write_forms(gsheet_reader)
 
                     current_row += 2
@@ -52,12 +52,13 @@ def main():
                     logger.exception(f"An error occurred in Main while processing {root} root. Exception details: {e}")
                     
                     if "quota" in e:
+                        logger.debug(f"Starting retry for: {root} root.") 
                         time.sleep(write_delay_per_iteration)
                 
             logger.info(f"Complete processing {key} bab <--- ")
               
         except Exception as e:  
-            logger.exceptiont(f"An error occurred in Main while processing {key} bab. Exception details: {e}")
+            logger.exception(f"An error occurred in Main while processing {key} bab. Exception details: {e}")
 
     logger.info("The arabic verb generator finished <----------")
 

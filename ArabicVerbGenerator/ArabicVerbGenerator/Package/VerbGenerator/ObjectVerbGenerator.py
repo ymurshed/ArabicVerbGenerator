@@ -27,7 +27,7 @@ class ObjectVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in ObjectVerbGenerator: {e}")
+             raise f"An error occurred in ObjectVerbGenerator: {e}"
 
         return conjugations
 

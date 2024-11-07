@@ -23,7 +23,7 @@ class ForbidVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in ForbidVerbGenerator: {e}")
+             raise f"An error occurred in ForbidVerbGenerator: {e}"
 
         return conjugations
 
@@ -45,6 +45,6 @@ class ForbidVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in ForbidVerbGenerator: {e}")
+             raise f"An error occurred in ForbidVerbGenerator: {e}"
 
         return conjugations

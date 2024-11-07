@@ -27,7 +27,7 @@ class NegativeFutureVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in NegativeFutureVerbGenerator: {e}")
+             raise f"An error occurred in NegativeFutureVerbGenerator: {e}"
 
         return conjugations
 

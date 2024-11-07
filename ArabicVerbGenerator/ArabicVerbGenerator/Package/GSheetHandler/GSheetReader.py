@@ -1,11 +1,13 @@
 import gspread
+from logging import Logger
 from pathlib import Path
 from ..Constants.GSheetValues import GSheetValues
 from oauth2client.service_account import ServiceAccountCredentials
 
 class GSheetReader:
-    def __init__(self, config, sheetId):
+    def __init__(self, logger: Logger, config, sheetId):
         try:
+            self.__logger = logger
             self.__subdirectory = "Credentials"
             self.__filename = config["sheet_config"]["credential_file"]
 
@@ -21,7 +23,7 @@ class GSheetReader:
             self.__sheet = client.open(sheet_name).get_worksheet(sheetId)
         
         except Exception as e:  
-             print(f"An error occurred while getting sheet: {e}")
+             self.__logger.exception(f"An error occurred while getting sheet: {e}")
     
     def get_root_bab_masder(self, current_row = 0):
         try:
@@ -39,7 +41,7 @@ class GSheetReader:
             return (root_value.strip(), bab_value.strip(), masder_value.strip())
 
         except Exception as e:  
-             print(f"An error occurred while getting masder, root and bab from sheet: {e}")
+             self.__logger.exception(f"An error occurred while getting masder, root and bab from sheet: {e}")
 
     @property
     def current_row(self):

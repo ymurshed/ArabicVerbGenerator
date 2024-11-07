@@ -1,12 +1,14 @@
 import gspread
+from logging import Logger
 from gspread.worksheet import Worksheet
 from ..Constants.GSheetValues import GSheetValues
 
 class GSheetWritter:
-    def __init__(self, sheet: Worksheet, current_row, 
+    def __init__(self, logger: Logger, sheet: Worksheet, current_row, 
                  past_forms, present_forms, negative_past_forms, negative_present_forms,  
                  order_forms, forbid_forms, negative_future_forms, for_present_forms, object_forms):
         
+        self.__logger                   = logger
         self.__sheet                    = sheet
         self.__current_row              = current_row
         self.__past_forms               = past_forms
@@ -53,7 +55,7 @@ class GSheetWritter:
                 self.__write_object_forms()
 
         except Exception as e:  
-             print(f"An error occurred while writting forms in sheet: {e}")            
+             self.__logger.exception(f"An error occurred while writting forms in sheet: {e}")            
     
     def __write_past_forms(self):
         row = self.__current_row

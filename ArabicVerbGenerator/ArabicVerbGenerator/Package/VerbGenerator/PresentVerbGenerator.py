@@ -41,7 +41,7 @@ class PresentVerbGenerator:
                 conjugations.append(conjugated)
 
         except Exception as e:  
-             print(f"An error occurred in PresentVerbGenerator: {e}")
+             raise f"An error occurred in PresentVerbGenerator: {e}"
 
         return conjugations
 
@@ -67,7 +67,7 @@ class PresentVerbGenerator:
                 conjugations.append(conjugated)
 
         except Exception as e:  
-             print(f"An error occurred in PresentVerbGenerator: {e}")
+             raise f"An error occurred in PresentVerbGenerator: {e}"
 
         return conjugations
 

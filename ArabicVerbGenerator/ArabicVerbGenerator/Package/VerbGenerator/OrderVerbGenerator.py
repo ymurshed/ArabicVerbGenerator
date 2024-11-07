@@ -41,7 +41,7 @@ class OrderVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in OrderVerbGenerator: {e}")
+             raise f"An error occurred in OrderVerbGenerator: {e}"
 
         return conjugations
 
@@ -73,7 +73,7 @@ class OrderVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in OrderVerbGenerator: {e}")
+             raise f"An error occurred in OrderVerbGenerator: {e}"
 
         return conjugations
 

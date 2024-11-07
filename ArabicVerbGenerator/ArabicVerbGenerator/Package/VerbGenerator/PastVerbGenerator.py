@@ -13,7 +13,7 @@ class PastVerbGenerator:
     def __get_sahee_forms(self, root, bab):
         try:
             root = self.__set_past_verb_aen_kalima(root, bab)
-
+            
             # Remove the last diacritic char if present
             if root[-1] in (Diacritic.KASRA + Diacritic.FATHA + Diacritic.DAMMA):
                 root = root[:-1]
@@ -31,7 +31,7 @@ class PastVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in PastVerbGenerator: {e}")
+             raise f"An error occurred in PastVerbGenerator: {e}"
 
         return conjugations
 
@@ -55,7 +55,7 @@ class PastVerbGenerator:
                 conjugations.append(conjugated)
         
         except Exception as e:  
-             print(f"An error occurred in PastVerbGenerator: {e}")
+             raise f"An error occurred in PastVerbGenerator: {e}"
 
         return conjugations
 
