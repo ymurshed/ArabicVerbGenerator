@@ -7,6 +7,9 @@
         "بَابُ الإفْعَالِ"    : 5
     }
 
+    BAB_SHEET_NAME = "বাব"
+    BAB_CURRENT_ROW_OFFSET = 2
+
     SAHEE_MASDER        = "صحيح"
     GAIRE_SAHEE_MASDER  = "غير صحيح"
 

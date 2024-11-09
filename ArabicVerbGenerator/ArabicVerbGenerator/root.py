@@ -2,6 +2,7 @@
 import sys
 import time
 import json
+from Package.Constants.Errors import Errors
 from Package.Constants.GSheetValues import GSheetValues
 from Package.GSheetHandler.GSheetReader import GSheetReader
 from Package.Helpers.LogManager import LogManager
@@ -50,19 +51,22 @@ def main():
                         time.sleep(write_delay_per_iteration)
                 
                 except Exception as e:  
-                    if "quota" in str(e):
+                    if Errors.QUOTA_ERROR in str(e):
                         logger.debug(f"Starting retry for: {root} root.") 
                         time.sleep(write_delay_per_iteration)
-                    elif "cannot unpack non-iterable NoneType object" in str(e):
+
+                    elif str(e) in Errors.ErrorList: 
                         continue
+
                     else:
                         logger.exception(f"An error occurred in Main while processing {root} root. Exception details: {e}")
 
             logger.info(f"Complete processing {key} bab <--- ")
               
         except Exception as e:  
-            if "argument of type 'TypeError' is not iterable" in str(e):
+            if str(e) in Errors.ErrorList: 
                 continue
+
             else:
                 logger.exception(f"An error occurred in Main while processing {key} bab. Exception details: {e}")
 
