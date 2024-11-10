@@ -1,8 +1,5 @@
 ﻿class Errors:
-    QUOTA_ERROR = "quota"
-    ErrorList = [  
-                    "quota"
-                    "cannot unpack non-iterable NoneType object",
-                    "argument of type 'TypeError' is not iterable"
-                 ]
+    QUOTA_ERROR     = "quota"
+    UNPACK_ERROR    = "cannot unpack non-iterable NoneType object"
+    TYPE_ERROR      = "argument of type 'TypeError' is not iterable"
     

@@ -24,10 +24,10 @@ def main():
         try:
             logger.info(f"Start processing {key} bab --->")
             
-            current_row = 0
             root_processed = 0
             gsheet_reader = GSheetReader(logger, config, value, asset_dir)
-            
+            current_row = gsheet_reader.get_current_row_by_bab(value)
+
             while True:
                 try:
                     root, bab, masder = gsheet_reader.get_root_bab_masder(current_row)
@@ -55,16 +55,17 @@ def main():
                         logger.debug(f"Starting retry for: {root} root.") 
                         time.sleep(write_delay_per_iteration)
 
-                    elif str(e) in Errors.ErrorList: 
-                        continue
+                    elif Errors.UNPACK_ERROR in str(e): 
+                        break
 
                     else:
                         logger.exception(f"An error occurred in Main while processing {root} root. Exception details: {e}")
-
+            
+            gsheet_reader.set_current_row_by_bab(value, current_row)
             logger.info(f"Complete processing {key} bab <--- ")
               
         except Exception as e:  
-            if str(e) in Errors.ErrorList: 
+            if Errors.TYPE_ERROR in str(e): 
                 continue
 
             else:

@@ -11,7 +11,7 @@ class GSheetReader:
             self.__subdirectory = subdirectory
             self.__filename = config["sheet_config"]["credential_file"]
 
-            sheet_name = config["sheet_config"]["sheet_name"]
+            self.__sheet_name = config["sheet_config"]["sheet_name"]
             self.__start_row = config["sheet_config"]["first_start_row"]
             self.__start_col = config["sheet_config"]["last_start_col"]
 
@@ -19,12 +19,23 @@ class GSheetReader:
         
             service_account_credential_file = self.__get_full_file_path()
             creds = ServiceAccountCredentials.from_json_keyfile_name(service_account_credential_file, scope)
-            client = gspread.authorize(creds)
-            self.__sheet = client.open(sheet_name).get_worksheet(sheetId)
+            self.__client = gspread.authorize(creds)
+            self.__sheet = self.__client.open(self.__sheet_name).get_worksheet(sheetId)
         
         except Exception as e:  
              self.__logger.exception(f"An error occurred while getting sheet: {e}")
     
+    def get_current_row_by_bab(self, bab_index):
+        bab_sheet = self.__client.open(self.__sheet_name).get_worksheet(GSheetValues.BAB_SHEET_ID)
+        bab_current_cell_row = bab_index + GSheetValues.BAB_CURRENT_ROW_OFFSET
+        self.__current_row = int(bab_sheet.cell(bab_current_cell_row, GSheetValues.BAB_CURRENT_CELL_COL).value)
+        return self.__current_row
+
+    def set_current_row_by_bab(self, bab_index, current_row):
+        bab_sheet = self.__client.open(self.__sheet_name).get_worksheet(GSheetValues.BAB_SHEET_ID)
+        bab_current_cell_row = bab_index + GSheetValues.BAB_CURRENT_ROW_OFFSET
+        bab_sheet.update_cell(bab_current_cell_row, GSheetValues.BAB_CURRENT_CELL_COL, current_row)
+        
     def get_root_bab_masder(self, current_row = 0):
         try:
             # Find index from where in every cycle it will start filling data
