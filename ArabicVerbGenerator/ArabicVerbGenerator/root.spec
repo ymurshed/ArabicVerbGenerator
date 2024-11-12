@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['root.py'],
+    ['Root.py'],
     pathex=[],
     binaries=[],
     datas=[('Assets/config.json', '.'), ('Assets/arabicverbgenerator-ff8d2c424453.json', '.')],
@@ -21,7 +21,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='root',
+    name='Root',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -40,5 +40,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='root',
+    name='Root',
 )
