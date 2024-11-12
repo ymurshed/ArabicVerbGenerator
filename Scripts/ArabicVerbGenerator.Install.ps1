@@ -1,0 +1,1 @@
+pyinstaller --add-data "Assets/config.json;." --add-data "Assets/arabicverbgenerator-ff8d2c424453.json;." Root.py

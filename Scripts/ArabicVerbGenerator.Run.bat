@@ -1,0 +1,1 @@
+start /d "C:\Services\CustomServices\ArabicVerbGeneratorServices\ArabicVerbGenerator" Root.exe
