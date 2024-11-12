@@ -7,19 +7,19 @@ class LogManager:
         self.__root_directory = root_directory
 
     def get_logger(self):
-        folder_name = "app_logs"
-        log_filename = "arabic_verb"
+        folder_name = "logs"
+        log_filename = "log-"
         
         log_folder_path = os.path.join(self.__root_directory, folder_name)
         os.makedirs(log_folder_path, exist_ok = True)
         log_file_path = os.path.join(log_folder_path, log_filename)
 
         # Create a TimedRotatingFileHandler that rotates at midnight and keeps 7 days of logs
-        handler = TimedRotatingFileHandler(f"{log_file_path}.log",   
+        handler = TimedRotatingFileHandler(f"{log_file_path}.txt",   
                                            when = "midnight",       
                                            interval = 1,            
                                            backupCount = 7,
-                                           encoding='utf-8')
+                                           encoding = 'utf-8')
     
         # Set the logging level and format
         handler.setLevel(logging.DEBUG)
