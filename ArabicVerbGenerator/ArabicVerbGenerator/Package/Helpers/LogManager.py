@@ -1,5 +1,6 @@
 import os
 import logging
+from datetime import datetime
 from logging.handlers import TimedRotatingFileHandler
 
 class LogManager:
@@ -7,15 +8,16 @@ class LogManager:
         self.__root_directory = root_directory
 
     def get_logger(self):
+        current_date = datetime.now().strftime("%Y%m%d")
         folder_name = "logs"
-        log_filename = "log-"
+        log_filename = f"log-{current_date}.txt"
         
         log_folder_path = os.path.join(self.__root_directory, folder_name)
         os.makedirs(log_folder_path, exist_ok = True)
         log_file_path = os.path.join(log_folder_path, log_filename)
 
         # Create a TimedRotatingFileHandler that rotates at midnight and keeps 7 days of logs
-        handler = TimedRotatingFileHandler(f"{log_file_path}.txt",   
+        handler = TimedRotatingFileHandler(log_file_path,   
                                            when = "midnight",       
                                            interval = 1,            
                                            backupCount = 7,
@@ -27,7 +29,7 @@ class LogManager:
         handler.setFormatter(formatter)
 
         # Set up the logger
-        logger = logging.getLogger("my_day_logger")
+        logger = logging.getLogger(__name__)
         logger.setLevel(logging.DEBUG)
         logger.addHandler(handler)
         return logger
