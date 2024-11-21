@@ -34,6 +34,8 @@ class OrderVerbGenerator:
                 # Set the first present verb haref 
                 if bab == Bab.BABUL_IFAL:
                     first_haref = Diacritic.ALIF_HAMJA_FATHA
+                elif bab == Bab.BABUL_TAFEL:
+                    first_haref = ""
                 else:
                     first_haref = self.__get_first_haref_by_aen_kalima(root) 
 

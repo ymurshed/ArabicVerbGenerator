@@ -14,12 +14,22 @@ class ForbidVerbGenerator:
         try:
             # Generate conjugations
             conjugations = []
-            prefix = ForbidVerbIndicators.prefixes_ifal[0] if bab == Bab.BABUL_IFAL else ForbidVerbIndicators.prefixes[0]
+
+            if bab == Bab.BABUL_IFAL:
+                prefix = ForbidVerbIndicators.prefixes_ifal[0]
+            elif bab == Bab.BABUL_TAFEL:
+                prefix = ForbidVerbIndicators.prefixes_tafel[0]
+            else:
+                prefix = ForbidVerbIndicators.prefixes[0]
             
             for i in range(len(order_forms)):
                 root = order_forms[i].strip()
                 
-                conjugated = f"{prefix}{root[2:]}"
+                if bab == Bab.BABUL_TAFEL:
+                    conjugated = f"{prefix}{root}"
+                else:    
+                    conjugated = f"{prefix}{root[2:]}"
+                
                 conjugations.append(conjugated)
         
         except Exception as e:  
