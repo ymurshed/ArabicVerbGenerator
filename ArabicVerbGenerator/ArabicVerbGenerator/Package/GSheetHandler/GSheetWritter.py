@@ -29,22 +29,12 @@ class GSheetWritter:
         try:
             if self._is_cell_blank(GSheetValues.PAST_FORM_3RD_PERSON_CELL_COL):
                 self.__write_past_forms()
-
-            if self._is_cell_blank(GSheetValues.PRESENT_FORM_3RD_PERSON_CELL_COL):
                 self.__write_present_forms()
-
-            if self._is_cell_blank(GSheetValues.NEGATIVE_PAST_FORM_3RD_PERSON_CELL_COL):
                 self.__write_negative_past_forms()
-
-            if self._is_cell_blank(GSheetValues.NEGATIVE_PRESENT_FORM_3RD_PERSON_CELL_COL):
                 self.__write_negative_present_forms()
-
-            if self._is_cell_blank(GSheetValues.ORDER_FORM_2ND_PERSON_CELL_COL):
                 self.__write_order_forms()
-            
-            if self._is_cell_blank(GSheetValues.FORBID_FORM_2ND_PERSON_CELL_COL):
                 self.__write_forbid_forms()
-            
+
             if self._is_cell_blank(GSheetValues.NEGATIVE_FUTURE_FORM_3RD_PERSON_CELL_COL):
                 self.__write_negative_future_forms()
 
