@@ -70,6 +70,9 @@ def main():
 
             else:
                 logger.exception(f"An error occurred in Main while processing {key} bab. Exception details: {e}")
+        
+        # Add a delay before each bab sheet processing 
+        time.sleep(write_delay_per_iteration)
 
     logger.info("The arabic verb generator finished <----------")
 
