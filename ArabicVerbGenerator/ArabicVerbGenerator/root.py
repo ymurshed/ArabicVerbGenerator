@@ -17,7 +17,7 @@ def main():
     asset_dir = "" if is_executable() else "Assets"
     config = load_config()
     max_row_process_per_iteration = config["sheet_config"]["max_row_process_per_iteration"]
-    write_delay_per_iteration = config["sheet_config"]["write_delay_per_iteration"]
+    delay = config["sheet_config"]["write_delay_per_iteration"]
     
     # Iterate each bab sheet
     for key, value in GSheetValues.BAB_SHEET_MAPPING.items():
@@ -37,7 +37,7 @@ def main():
                     if current_row == 0:
                         current_row = gsheet_reader.current_row
                 
-                    verb_manager = VerbManager(logger, root, bab, masder)
+                    verb_manager = VerbManager(logger, delay, root, bab, masder)
                     verb_manager.generate_forms()
                     verb_manager.apply_rules()
                     verb_manager.log_forms()
@@ -48,12 +48,12 @@ def main():
 
                     if root_processed % max_row_process_per_iteration == 0:
                         logger.debug(f"Root processed: {root_processed}")
-                        time.sleep(write_delay_per_iteration)
+                        time.sleep(delay)
                 
                 except Exception as e:  
                     if Errors.QUOTA_ERROR in str(e):
                         logger.debug(f"Starting retry for: {root} root.") 
-                        time.sleep(write_delay_per_iteration)
+                        time.sleep(delay)
 
                     elif Errors.UNPACK_ERROR in str(e): 
                         break
@@ -72,7 +72,7 @@ def main():
                 logger.exception(f"An error occurred in Main while processing {key} bab. Exception details: {e}")
         
         # Add a delay before each bab sheet processing 
-        time.sleep(write_delay_per_iteration)
+        time.sleep(delay)
 
     logger.info("The arabic verb generator finished <----------")
 

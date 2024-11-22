@@ -1,3 +1,4 @@
+import time
 import gspread
 from logging import Logger
 from gspread.worksheet import Worksheet
@@ -25,7 +26,7 @@ class GSheetWritter:
         cell_val = self.__sheet.cell(self.__current_row, col).value
         return cell_val is None or cell_val == ''
 
-    def write_forms(self):
+    def write_forms(self, delay):
         try:
             if self._is_cell_blank(GSheetValues.PAST_FORM_3RD_PERSON_CELL_COL):
                 self.__write_past_forms()
@@ -34,6 +35,9 @@ class GSheetWritter:
                 self.__write_negative_present_forms()
                 self.__write_order_forms()
                 self.__write_forbid_forms()
+                
+                # Add a delay to avoid quota exceed 'Write requests'
+                time.sleep(delay)
 
             if self._is_cell_blank(GSheetValues.NEGATIVE_FUTURE_FORM_3RD_PERSON_CELL_COL):
                 self.__write_negative_future_forms()

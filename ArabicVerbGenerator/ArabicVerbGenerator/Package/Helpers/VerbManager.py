@@ -15,8 +15,9 @@ from ..VerbGenerator.NegativePastVerbGenerator import NegativePastVerbGenerator
 from ..VerbGenerator.NegativePresentVerbGenerator import NegativePresentVerbGenerator
 
 class VerbManager:
-    def __init__(self, logger: Logger, root, bab, masder):
+    def __init__(self, logger: Logger, delay, root, bab, masder):
         self.__logger = logger
+        self.__delay  = delay
         self.__root   = root
         self.__bab    = bab
         self.__masder = masder
@@ -77,7 +78,7 @@ class VerbManager:
         gsheet_writter = GSheetWritter(self.__logger, sheet, current_row, 
                                        self.__past_forms, self.__present_forms, self.__negative_past_forms, self.__negative_present_forms,
                                        self.__order_forms, self.__forbid_forms, self.__negative_future_forms, self.__for_present_forms, self.__object_forms)
-        gsheet_writter.write_forms()
+        gsheet_writter.write_forms(self.__delay)
 
     def __generate_past_forms(self):
         past_verb_generator = PastVerbGenerator()
