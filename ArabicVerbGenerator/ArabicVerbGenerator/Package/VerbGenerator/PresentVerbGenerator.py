@@ -16,12 +16,15 @@ class PresentVerbGenerator:
 
             # Replace the first diacritic char  
             if bab == Bab.BABUL_IFAL:
-                 # Replace the first diacritic char with blank
+                # Replace the first diacritic char with blank
                 root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
                 prefixes = PresentVerbIndicators.prefixes_ifal
 
             elif bab == Bab.BABUT_TAFEL:
                 prefixes = PresentVerbIndicators.prefixes_tafel
+
+            elif bab == Bab.BABUT_TAFAUL:
+                prefixes = PresentVerbIndicators.prefixes_tafaul
 
             else:
                 # Replace the first diacritic char with SUKUN
