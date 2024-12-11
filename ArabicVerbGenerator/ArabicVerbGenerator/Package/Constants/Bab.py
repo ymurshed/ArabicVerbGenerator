@@ -5,4 +5,5 @@
     SAMIA_YASMAU         = "سَمِعَ - يَسْمَعُ"
     FATAHA_YAFTAHU       = "فَتَحَ - يَفْتَحُ"
     BABUL_IFAL           = "بَابُ الإفْعَالِ"
-    BABUL_TAFEL          = "بَابُ التَّفْعِيلِ"
+    BABUT_TAFEL          = "بَابُ التَّفْعِيلِ"
+    BABUT_TAFAUL         = "بَابُ التَّفَعُّلِ"

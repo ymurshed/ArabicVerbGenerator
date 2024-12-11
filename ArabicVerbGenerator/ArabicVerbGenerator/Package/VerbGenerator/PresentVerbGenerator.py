@@ -20,7 +20,7 @@ class PresentVerbGenerator:
                 root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
                 prefixes = PresentVerbIndicators.prefixes_ifal
 
-            elif bab == Bab.BABUL_TAFEL:
+            elif bab == Bab.BABUT_TAFEL:
                 prefixes = PresentVerbIndicators.prefixes_tafel
 
             else:
@@ -97,7 +97,7 @@ class PresentVerbGenerator:
         
         if len(root) == 7:
             match bab:
-                case Bab.BABUL_TAFEL:
+                case Bab.BABUT_TAFEL:
                    root = root[0:4] + Diacritic.KASRA + root[5:7]
         return root
 

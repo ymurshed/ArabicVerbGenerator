@@ -17,7 +17,7 @@ class ForbidVerbGenerator:
 
             if bab == Bab.BABUL_IFAL:
                 prefix = ForbidVerbIndicators.prefixes_ifal[0]
-            elif bab == Bab.BABUL_TAFEL:
+            elif bab == Bab.BABUT_TAFEL:
                 prefix = ForbidVerbIndicators.prefixes_tafel[0]
             else:
                 prefix = ForbidVerbIndicators.prefixes[0]
@@ -25,7 +25,7 @@ class ForbidVerbGenerator:
             for i in range(len(order_forms)):
                 root = order_forms[i].strip()
                 
-                if bab == Bab.BABUL_TAFEL:
+                if bab == Bab.BABUT_TAFEL:
                     conjugated = f"{prefix}{root}"
                 else:    
                     conjugated = f"{prefix}{root[2:]}"
