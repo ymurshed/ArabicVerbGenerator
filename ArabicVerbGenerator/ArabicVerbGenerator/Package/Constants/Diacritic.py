@@ -9,5 +9,6 @@
     YA                      = "ي"
     NA                      = "نَ"
     ALIF                    = "ا"
+    ALIF_KASRA              = "اِ"
     ALIF_HAMJA_FATHA        = "أَ"
     

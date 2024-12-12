@@ -7,4 +7,4 @@
     BABUL_IFAL           = "بَابُ الإفْعَالِ"
     BABUT_TAFEL          = "بَابُ التَّفْعِيلِ"
     BABUT_TAFAUL         = "بَابُ التَّفَعُّلِ"
-    BABUL_IFTEAL         = "بَابُ الاِفْتِعَال"
+    BABUL_IFTEAL         = "بَابُ الاِفْتِعَالِ"

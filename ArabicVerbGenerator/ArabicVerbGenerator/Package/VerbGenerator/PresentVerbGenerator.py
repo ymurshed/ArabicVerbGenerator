@@ -26,6 +26,11 @@ class PresentVerbGenerator:
             elif bab == Bab.BABUT_TAFAUL:
                 prefixes = PresentVerbIndicators.prefixes_tafaul
 
+            elif bab == Bab.BABUL_IFTEAL:
+                # Replace the first diacritic char with blank
+                root = root.replace(Diacritic.ALIF_KASRA, "")
+                prefixes = PresentVerbIndicators.prefixes_ifteal
+
             else:
                 # Replace the first diacritic char with SUKUN
                 root = root[0] + Diacritic.SUKUN + root[2:]
@@ -102,6 +107,12 @@ class PresentVerbGenerator:
             match bab:
                 case Bab.BABUT_TAFEL:
                    root = root[0:4] + Diacritic.KASRA + root[5:7]
+
+        if len(root) == 10:
+            match bab:
+                case Bab.BABUL_IFTEAL:
+                   root = root[0:7] + Diacritic.KASRA + root[8:9]
+
         return root
 
     def __set_ghair_sahee_present_verb_aen_kalima(self, root, bab):
