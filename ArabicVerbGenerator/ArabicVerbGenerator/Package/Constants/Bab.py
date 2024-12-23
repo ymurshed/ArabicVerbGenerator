@@ -8,3 +8,4 @@
     BABUT_TAFEL          = "بَابُ التَّفْعِيلِ"
     BABUT_TAFAUL         = "بَابُ التَّفَعُّلِ"
     BABUL_IFTEAL         = "بَابُ الاِفْتِعَالِ"
+    BABUL_ISTEFAL        = "بَابُ الاِسْتِفْعَالِ"

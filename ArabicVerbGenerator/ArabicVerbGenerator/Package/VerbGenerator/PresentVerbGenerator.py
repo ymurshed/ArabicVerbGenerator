@@ -31,6 +31,11 @@ class PresentVerbGenerator:
                 root = root.replace(Diacritic.ALIF_KASRA, "")
                 prefixes = PresentVerbIndicators.prefixes_ifteal
 
+            elif bab == Bab.BABUL_ISTEFAL:
+                # Replace the first diacritic char with blank
+                root = root.replace(Diacritic.ALIF_KASRA, "")
+                prefixes = PresentVerbIndicators.prefixes_istefal
+
             else:
                 # Replace the first diacritic char with SUKUN
                 root = root[0] + Diacritic.SUKUN + root[2:]
@@ -112,6 +117,11 @@ class PresentVerbGenerator:
             match bab:
                 case Bab.BABUL_IFTEAL:
                    root = root[0:7] + Diacritic.KASRA + root[8:9]
+
+        if len(root) == 12:
+            match bab:
+                case Bab.BABUL_ISTEFAL:
+                   root = root[0:9] + Diacritic.KASRA + root[10:11]
 
         return root
 
