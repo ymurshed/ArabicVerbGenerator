@@ -142,4 +142,9 @@ class PresentVerbGenerator:
                 case Bab.BABUL_IFAL:
                    root = root[2] + Diacritic.KASRA + Diacritic.YA_HARFE_ATT_1 + root[5]
 
+        if len(root) == 10:
+            match bab:
+                case Bab.BABUL_ISTEFAL:
+                   root = root[2:7] + Diacritic.KASRA + Diacritic.YA_HARFE_ATT_1 + root[9]
+
         return root

@@ -3,3 +3,4 @@
     prefixes_ifal       = ["لا تُ"]
     prefixes_tafel      = ["لا تُ"]
     prefixes_tafaul     = ["لا تَ"]
+    prefixes_istefal    = ["لا تَ"]

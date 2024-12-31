@@ -65,10 +65,15 @@ class OrderVerbGenerator:
                 root = root[2:]
                 
                 # Set the first present verb haref 
-                first_haref = Diacritic.ALIF_HAMJA_FATHA if bab == Bab.BABUL_IFAL else ""
-
+                if bab == Bab.BABUL_IFAL:
+                    first_haref = Diacritic.ALIF_HAMJA_FATHA
+                elif bab == Bab.BABUL_ISTEFAL:
+                    first_haref = Diacritic.ALIF_KASRA
+                else:
+                    first_haref = ""
+                
                 if i == 0:
-                    conjugated = f"{first_haref}{root[0:2]}{root[-2]}{Diacritic.SUKUN}"
+                    conjugated = f"{first_haref}{root[0:len(root) - 4]}{root[-2]}{Diacritic.SUKUN}"
                 else:
                     conjugated = f"{first_haref}{root}"
 

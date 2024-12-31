@@ -50,6 +50,9 @@ class ForbidVerbGenerator:
                 if bab == Bab.BABUL_IFAL:
                     root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
                     prefixes = ForbidVerbIndicators.prefixes_ifal
+                elif bab == Bab.BABUL_ISTEFAL:
+                    root = root.replace(Diacritic.ALIF_KASRA, "")
+                    prefixes = ForbidVerbIndicators.prefixes_istefal
                 else:
                     prefixes = ForbidVerbIndicators.prefixes
                 
