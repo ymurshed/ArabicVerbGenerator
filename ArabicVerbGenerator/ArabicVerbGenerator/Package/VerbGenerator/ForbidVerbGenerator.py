@@ -15,19 +15,19 @@ class ForbidVerbGenerator:
             # Generate conjugations
             conjugations = []
 
-            if bab == Bab.BABUL_IFAL:
-                prefix = ForbidVerbIndicators.prefixes_ifale[0]
-            elif bab == Bab.BABUT_TAFEL:
-                prefix = ForbidVerbIndicators.prefixes_tafele[0]
-            elif bab == Bab.BABUT_TAFAUL:
-                prefix = ForbidVerbIndicators.prefixes_tafaule[0]
+            if bab == Bab.BABUL_IFALI:
+                prefix = ForbidVerbIndicators.prefixes_ifali[0]
+            elif bab == Bab.BABUT_TAFELI:
+                prefix = ForbidVerbIndicators.prefixes_tafeli[0]
+            elif bab == Bab.BABUT_TAFAULI:
+                prefix = ForbidVerbIndicators.prefixes_tafauli[0]
             else:
                 prefix = ForbidVerbIndicators.prefixes[0]
             
             for i in range(len(order_forms)):
                 root = order_forms[i].strip()
                 
-                if bab == Bab.BABUT_TAFEL or bab == Bab.BABUT_TAFAUL:
+                if bab == Bab.BABUT_TAFELI or bab == Bab.BABUT_TAFAULI:
                     conjugated = f"{prefix}{root}"
                 else:    
                     conjugated = f"{prefix}{root[2:]}"
@@ -47,12 +47,12 @@ class ForbidVerbGenerator:
             for i in range(len(order_forms)):
                 root = order_forms[i].strip()
                 
-                if bab == Bab.BABUL_IFAL:
+                if bab == Bab.BABUL_IFALI:
                     root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
-                    prefixes = ForbidVerbIndicators.prefixes_ifale
-                elif bab == Bab.BABUL_ISTEFAL:
+                    prefixes = ForbidVerbIndicators.prefixes_ifali
+                elif bab == Bab.BABUL_ISTEFALI:
                     root = root.replace(Diacritic.ALIF_KASRA, "")
-                    prefixes = ForbidVerbIndicators.prefixes_istefale
+                    prefixes = ForbidVerbIndicators.prefixes_istefali
                 else:
                     prefixes = ForbidVerbIndicators.prefixes
                 

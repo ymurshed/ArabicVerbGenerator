@@ -126,7 +126,7 @@ class VerbManager:
 
     def __generate_object_forms(self):
         main_verb_root      = "أَرَادَ"
-        main_verb_bab       = Bab.BABUL_IFAL
+        main_verb_bab       = Bab.BABUL_IFALI
         main_verb_masder    = GSheetValues.GAIRE_SAHEE_MASDER
 
         past_forms = self.__generate_past_forms_with_params(main_verb_root, main_verb_bab, main_verb_masder)

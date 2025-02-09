@@ -15,26 +15,26 @@ class PresentVerbGenerator:
             root = self.__set_present_verb_aen_kalima(root, bab)
 
             # Replace the first diacritic char  
-            if bab == Bab.BABUL_IFAL:
+            if bab == Bab.BABUL_IFALI:
                 # Replace the first diacritic char with blank
                 root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
-                prefixes = PresentVerbIndicators.prefixes_ifale
+                prefixes = PresentVerbIndicators.prefixes_ifali
 
-            elif bab == Bab.BABUT_TAFEL:
-                prefixes = PresentVerbIndicators.prefixes_tafele
+            elif bab == Bab.BABUT_TAFELI:
+                prefixes = PresentVerbIndicators.prefixes_tafeli
 
-            elif bab == Bab.BABUT_TAFAUL:
-                prefixes = PresentVerbIndicators.prefixes_tafaule
+            elif bab == Bab.BABUT_TAFAULI:
+                prefixes = PresentVerbIndicators.prefixes_tafauli
 
-            elif bab == Bab.BABUL_IFTEAL:
+            elif bab == Bab.BABUL_IFTEALI:
                 # Replace the first diacritic char with blank
                 root = root.replace(Diacritic.ALIF_KASRA, "")
-                prefixes = PresentVerbIndicators.prefixes_ifteale
+                prefixes = PresentVerbIndicators.prefixes_ifteali
 
-            elif bab == Bab.BABUL_ISTEFAL:
+            elif bab == Bab.BABUL_ISTEFALI:
                 # Replace the first diacritic char with blank
                 root = root.replace(Diacritic.ALIF_KASRA, "")
-                prefixes = PresentVerbIndicators.prefixes_istefale
+                prefixes = PresentVerbIndicators.prefixes_istefali
 
             else:
                 # Replace the first diacritic char with SUKUN
@@ -72,7 +72,7 @@ class PresentVerbGenerator:
 
             # Generate conjugations
             conjugations = []
-            prefixes = PresentVerbIndicators.prefixes_ifale if bab == Bab.BABUL_IFAL else PresentVerbIndicators.prefixes
+            prefixes = PresentVerbIndicators.prefixes_ifali if bab == Bab.BABUL_IFALI else PresentVerbIndicators.prefixes
             suffixes = PresentVerbIndicators.suffixes 
 
             for i in range(len(suffixes)):
@@ -105,22 +105,22 @@ class PresentVerbGenerator:
 
         if len(root) == 8:
             match bab:
-                case Bab.BABUL_IFAL:
+                case Bab.BABUL_IFALI:
                    root = root[0:5] + Diacritic.KASRA + root[6:8]
         
         if len(root) == 7:
             match bab:
-                case Bab.BABUT_TAFEL:
+                case Bab.BABUT_TAFELI:
                    root = root[0:4] + Diacritic.KASRA + root[5:7]
 
         if len(root) == 10:
             match bab:
-                case Bab.BABUL_IFTEAL:
+                case Bab.BABUL_IFTEALI:
                    root = root[0:7] + Diacritic.KASRA + root[8:9]
 
         if len(root) == 12:
             match bab:
-                case Bab.BABUL_ISTEFAL:
+                case Bab.BABUL_ISTEFALI:
                    root = root[0:9] + Diacritic.KASRA + root[10:11]
 
         return root
@@ -139,12 +139,12 @@ class PresentVerbGenerator:
 
         if len(root) == 6:
             match bab:
-                case Bab.BABUL_IFAL:
+                case Bab.BABUL_IFALI:
                    root = root[2] + Diacritic.KASRA + Diacritic.YA_HARFE_ATT_1 + root[5]
 
         if len(root) == 10:
             match bab:
-                case Bab.BABUL_ISTEFAL:
+                case Bab.BABUL_ISTEFALI:
                    root = root[2:7] + Diacritic.KASRA + Diacritic.YA_HARFE_ATT_1 + root[9]
 
         return root

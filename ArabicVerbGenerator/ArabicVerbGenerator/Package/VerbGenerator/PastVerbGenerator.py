@@ -89,12 +89,12 @@ class PastVerbGenerator:
 
         if len(root) == 6:
             match bab:
-                case Bab.BABUL_IFAL:
+                case Bab.BABUL_IFALI:
                    root = root[0:4] + root[5]
 
         if len(root) == 10:
             match bab:
-                case Bab.BABUL_ISTEFAL:
+                case Bab.BABUL_ISTEFALI:
                    root = root[0:8] + root[9]
 
         return root
