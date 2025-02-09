@@ -18,23 +18,23 @@ class PresentVerbGenerator:
             if bab == Bab.BABUL_IFAL:
                 # Replace the first diacritic char with blank
                 root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
-                prefixes = PresentVerbIndicators.prefixes_ifal
+                prefixes = PresentVerbIndicators.prefixes_ifale
 
             elif bab == Bab.BABUT_TAFEL:
-                prefixes = PresentVerbIndicators.prefixes_tafel
+                prefixes = PresentVerbIndicators.prefixes_tafele
 
             elif bab == Bab.BABUT_TAFAUL:
-                prefixes = PresentVerbIndicators.prefixes_tafaul
+                prefixes = PresentVerbIndicators.prefixes_tafaule
 
             elif bab == Bab.BABUL_IFTEAL:
                 # Replace the first diacritic char with blank
                 root = root.replace(Diacritic.ALIF_KASRA, "")
-                prefixes = PresentVerbIndicators.prefixes_ifteal
+                prefixes = PresentVerbIndicators.prefixes_ifteale
 
             elif bab == Bab.BABUL_ISTEFAL:
                 # Replace the first diacritic char with blank
                 root = root.replace(Diacritic.ALIF_KASRA, "")
-                prefixes = PresentVerbIndicators.prefixes_istefal
+                prefixes = PresentVerbIndicators.prefixes_istefale
 
             else:
                 # Replace the first diacritic char with SUKUN
@@ -72,7 +72,7 @@ class PresentVerbGenerator:
 
             # Generate conjugations
             conjugations = []
-            prefixes = PresentVerbIndicators.prefixes_ifal if bab == Bab.BABUL_IFAL else PresentVerbIndicators.prefixes
+            prefixes = PresentVerbIndicators.prefixes_ifale if bab == Bab.BABUL_IFAL else PresentVerbIndicators.prefixes
             suffixes = PresentVerbIndicators.suffixes 
 
             for i in range(len(suffixes)):

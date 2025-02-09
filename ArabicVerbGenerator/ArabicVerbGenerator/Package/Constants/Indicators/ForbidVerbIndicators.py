@@ -1,6 +1,6 @@
 ﻿class ForbidVerbIndicators:
     prefixes            = ["لا تَ"]
-    prefixes_ifal       = ["لا تُ"]
-    prefixes_tafel      = ["لا تُ"]
-    prefixes_tafaul     = ["لا تَ"]
-    prefixes_istefal    = ["لا تَ"]
+    prefixes_ifale       = ["لا تُ"]
+    prefixes_tafele      = ["لا تُ"]
+    prefixes_tafaule     = ["لا تَ"]
+    prefixes_istefale    = ["لا تَ"]

@@ -16,11 +16,11 @@ class ForbidVerbGenerator:
             conjugations = []
 
             if bab == Bab.BABUL_IFAL:
-                prefix = ForbidVerbIndicators.prefixes_ifal[0]
+                prefix = ForbidVerbIndicators.prefixes_ifale[0]
             elif bab == Bab.BABUT_TAFEL:
-                prefix = ForbidVerbIndicators.prefixes_tafel[0]
+                prefix = ForbidVerbIndicators.prefixes_tafele[0]
             elif bab == Bab.BABUT_TAFAUL:
-                prefix = ForbidVerbIndicators.prefixes_tafaul[0]
+                prefix = ForbidVerbIndicators.prefixes_tafaule[0]
             else:
                 prefix = ForbidVerbIndicators.prefixes[0]
             
@@ -49,10 +49,10 @@ class ForbidVerbGenerator:
                 
                 if bab == Bab.BABUL_IFAL:
                     root = root.replace(Diacritic.ALIF_HAMJA_FATHA, "")
-                    prefixes = ForbidVerbIndicators.prefixes_ifal
+                    prefixes = ForbidVerbIndicators.prefixes_ifale
                 elif bab == Bab.BABUL_ISTEFAL:
                     root = root.replace(Diacritic.ALIF_KASRA, "")
-                    prefixes = ForbidVerbIndicators.prefixes_istefal
+                    prefixes = ForbidVerbIndicators.prefixes_istefale
                 else:
                     prefixes = ForbidVerbIndicators.prefixes
                 
