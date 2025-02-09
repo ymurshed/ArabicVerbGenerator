@@ -4,3 +4,4 @@
     prefixes_tafeli      = ["لا تُ"]
     prefixes_tafauli     = ["لا تَ"]
     prefixes_istefali    = ["لا تَ"]
+    prefixes_mufaalati   = ["لا تُ"]

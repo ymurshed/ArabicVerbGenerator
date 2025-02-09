@@ -21,13 +21,15 @@ class ForbidVerbGenerator:
                 prefix = ForbidVerbIndicators.prefixes_tafeli[0]
             elif bab == Bab.BABUT_TAFAULI:
                 prefix = ForbidVerbIndicators.prefixes_tafauli[0]
+            elif bab == Bab.BABUL_MUFAALATI:
+                prefix = ForbidVerbIndicators.prefixes_mufaalati[0]
             else:
                 prefix = ForbidVerbIndicators.prefixes[0]
             
             for i in range(len(order_forms)):
                 root = order_forms[i].strip()
                 
-                if bab == Bab.BABUT_TAFELI or bab == Bab.BABUT_TAFAULI:
+                if bab == Bab.BABUT_TAFELI or bab == Bab.BABUT_TAFAULI or bab == Bab.BABUL_MUFAALATI:
                     conjugated = f"{prefix}{root}"
                 else:    
                     conjugated = f"{prefix}{root[2:]}"
